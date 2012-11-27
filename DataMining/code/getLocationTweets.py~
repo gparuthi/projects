@@ -51,12 +51,13 @@ def getAllCoords(f, outf):
     return ret
 
 
-flist = flist = os.listdir('/Users/gaurav/Documents/Work/Projects/DataMining/data')
+dir = '/Users/gaurav/Documents/Work/Projects/DataMining/data/'
+flist = os.listdir(dir)
 for fname in flist:
     if '.gz' in fname:
         newf_name = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/'+fname+'.data'
-        if(!os.path.isfile(newf_name)):
-            f= process_file(fname)
+        if not os.path.isfile(newf_name):
+            f= process_file(dir+fname)
             coordsf = open(newf_name, 'w')
             getAllCoords(f, coordsf)
 

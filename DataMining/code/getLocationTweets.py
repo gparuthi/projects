@@ -50,14 +50,15 @@ def getAllCoords(f, outf):
         line = f.readline()
     return ret
 
-
-dir = '/Users/gaurav/Documents/Work/Projects/DataMining/data/'
-flist = os.listdir(dir)
-for fname in flist:
-    if '.gz' in fname:
-        newf_name = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/'+fname+'.data'
-        if not os.path.isfile(newf_name):
-            f= process_file(dir+fname)
-            coordsf = open(newf_name, 'w')
-            getAllCoords(f, coordsf)
-
+def processCoords():
+    dir = '/Users/gaurav/Documents/Work/Projects/DataMining/data/'
+    flist = os.listdir(dir)
+    for fname in flist:
+        if '.gz' in fname:
+            newf_name = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/'+fname+'.data'
+            if not os.path.isfile(newf_name):
+                f= process_file(dir+fname)
+                coordsf = open(newf_name, 'w')
+                getAllCoords(f, coordsf)
+            
+# write a method to process the data and see if the location is something
