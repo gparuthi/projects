@@ -1,0 +1,12 @@
+library("rjson")
+library(plyr)
+
+# here would be the code for all my R related processing
+
+#read all lines into text
+text <- readLines("gardenhose.2012-11-01.gz.data")
+
+#get a json object for text
+jsondata <- laply(text, function(t) fromJSON(t))
+
+# get coordinates for people from new york
