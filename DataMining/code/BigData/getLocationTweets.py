@@ -2,7 +2,29 @@ import gzip
 from ujson import loads,dumps
 from datetime import datetime
 import os
+from pprint import pprint
 
+LOGFILE_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/logs/' + 'BigData.'+str(datetime.now())+'.log'
+LOGFILE = open(LOGFILE_PATH,'w')
+
+def log(log_str):
+    print str(log_str)
+    LOGFILE.write(str(log_str) + '\n')
+
+def log_final_stats_(res):
+    # res is an array of arrays
+    # the element array is a list of format: '['filename', totlines, loc_lines ]'
+    log ('----------------------------------------------------------------------')
+    log ('Final results:' + str(res))
+    tot_lines = 0
+    loc_lines = 0
+    for r in res:
+        tot_lines += r[1]
+        loc_lines += r[2]
+    log ('Total Lines found: ' + str (tot_lines))
+    log ('Total lines with coordinates: ' +  str(loc_lines))
+    log ('----------------------------------------------------------------------')
+    LOGFILE.close()
 
 def process_file(path):
     f = gzip.open(path)
@@ -19,7 +41,6 @@ def getCoordinatess(f,n=100):
             print 'location: ' + rec['user']['location']
             print 'geo_enabled: ' + str(rec['user']['geo_enabled'])
 
-        
 def checkCoords(rec):
     if 'coordinates' in rec:
         coords = rec['coordinates']
@@ -27,10 +48,48 @@ def checkCoords(rec):
             return True
         else:
             return False
+
+def checkLocation(rec):
+#    print(rec.keys())
+    if 'user' in rec:
+        user_data = rec['user']
+        if 'location' in user_data:
+            if user_data['location'] != None:
+                loc = user_data['location'].lower()
+            #print loc
+                if 'delhi' in loc or 'new york' in loc:
+                    return loc
+                else:
+                    return None
             
 
+def getAllLocations(f, outf):
+    log( 'finding all records with location delhi or new york data for: ' + f.name)
+    start_time = datetime.now()
+    tot_lines =0
+    loc_lines =0
+    line = f.readline()
+    ret = []
+    while line:
+        rec = loads(line)
+        tot_lines += 1
+        location = checkLocation(rec) 
+        if location != None:
+            outf.write(line)
+            loc_lines += 1
+            if (loc_lines%1000==0):
+                now_time = datetime.now()
+                log(str(loc_lines) + '/' + str(tot_lines) + ': ' + str((now_time-start_time).seconds))
+        line = f.readline()
+    log('File Stats for: ' + f.name)
+    log('Total time taken: ' + str((now_time-start_time).seconds))
+    log('Total number of lines found = ' + str(tot_lines))
+    log('Total number of lines With Coordinates = ' + str(loc_lines))
+    ret = [f.name,tot_lines, loc_lines]
+    return ret
+
 def getAllCoords(f, outf):
-    print 'finding all records with coordinate data'
+    log( 'finding all records with coordinate data for: ' + f.name)
     start_time = datetime.now()
     tot_lines =0
     loc_lines =0
@@ -46,19 +105,45 @@ def getAllCoords(f, outf):
             loc_lines += 1
             if (loc_lines%1000==0):
                 now_time = datetime.now()
-                print str(loc_lines) + '/' + str(tot_lines) + ': ' + str((now_time-start_time).seconds) 
+                log(str(loc_lines) + '/' + str(tot_lines) + ': ' + str((now_time-start_time).seconds)) 
         line = f.readline()
+    log('File Stats for: ' + f.name)
+    log('Total time taken: ' + str((now_time-start_time).seconds))
+    log('Total number of lines found = ' + str(tot_lines))
+    log('Total number of lines With Coordinates = ' + str(loc_lines))
+    ret = [f.name,tot_lines, loc_lines]
     return ret
 
 def processCoords():
     dir = '/Users/gaurav/Documents/Work/Projects/DataMining/data/'
     flist = os.listdir(dir)
+    res = []
     for fname in flist:
         if '.gz' in fname:
             newf_name = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/'+fname+'.data'
             if not os.path.isfile(newf_name):
                 f= process_file(dir+fname)
                 coordsf = open(newf_name, 'w')
-                getAllCoords(f, coordsf)
-            
+                res.append(getAllCoords(f, coordsf))
+            else:
+                print "Skipping file because data already exists at:" + newf_name
+    log_final_stats(res)
+
+def processLocs():
+    dir = '/Users/gaurav/Documents/Work/Projects/DataMining/data/'
+    flist = os.listdir(dir)
+    res = []
+    for fname in flist:
+        if '.gz' in fname:
+            newf_name = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/location/'+fname+'.data'
+            if not os.path.isfile(newf_name):
+                f= process_file(dir+fname)
+                coordsf = open(newf_name, 'w')
+                res.append(getAllLocations(f, coordsf))
+            else:
+                print "Skipping file because data already exists at:" + newf_name
+        log_final_stats(res)
+
 # write a method to process the data and see if the location is something
+
+processLocs()

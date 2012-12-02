@@ -1,0 +1,274 @@
+Getting del and ny data from files:
+ny:::::1000/42421: 13
+ny:::::2000/163606: 21
+del:::::100/220967: 24
+ny:::::3000/228685: 25
+ny:::::4000/282780: 28
+ny:::::5000/343713: 32
+ny:::::6000/401101: 35
+ny:::::7000/449144: 38
+ny:::::8000/490906: 40
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-01.gz.data.delhi
+Total time taken: 42
+Total number of lines found = 510124
+Total number of lines With Coordinates = 149
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-01.gz.data.ny
+Total time taken: 42
+Total number of lines found = 510124
+Total number of lines With Coordinates = 8454
+ny:::::1000/41009: 44
+ny:::::2000/152414: 51
+del:::::100/165001: 52
+ny:::::3000/219749: 55
+ny:::::4000/271312: 59
+ny:::::5000/320675: 62
+ny:::::6000/366627: 65
+ny:::::7000/411678: 67
+ny:::::8000/452106: 70
+ny:::::9000/491674: 72
+del:::::200/511293: 73
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-02.gz.data.delhi
+Total time taken: 74
+Total number of lines found = 519546
+Total number of lines With Coordinates = 203
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-02.gz.data.ny
+Total time taken: 74
+Total number of lines found = 519546
+Total number of lines With Coordinates = 9744
+ny:::::1000/37515: 76
+ny:::::2000/137615: 83
+del:::::100/187651: 86
+ny:::::3000/216921: 88
+ny:::::4000/271060: 91
+ny:::::5000/325741: 94
+ny:::::6000/380045: 98
+ny:::::7000/430273: 101
+ny:::::8000/475024: 103
+ny:::::9000/515728: 106
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-03.gz.data.delhi
+Total time taken: 108
+Total number of lines found = 541883
+Total number of lines With Coordinates = 182
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-03.gz.data.ny
+Total time taken: 108
+Total number of lines found = 541883
+Total number of lines With Coordinates = 9619
+ny:::::1000/36199: 110
+ny:::::2000/135655: 116
+del:::::100/169846: 118
+ny:::::3000/223731: 121
+ny:::::4000/273923: 124
+ny:::::5000/322863: 128
+ny:::::6000/380040: 132
+ny:::::7000/427903: 135
+ny:::::8000/471266: 137
+ny:::::9000/509930: 140
+ny:::::10000/545408: 142
+del:::::200/579067: 144
+ny:::::11000/582125: 144
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-04.gz.data.delhi
+Total time taken: 144
+Total number of lines found = 583108
+Total number of lines With Coordinates = 201
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-04.gz.data.ny
+Total time taken: 144
+Total number of lines found = 583108
+Total number of lines With Coordinates = 11033
+ny:::::1000/67580: 149
+ny:::::2000/161591: 154
+del:::::100/196271: 156
+ny:::::3000/219313: 158
+ny:::::4000/276775: 161
+ny:::::5000/330472: 165
+ny:::::6000/387401: 168
+ny:::::7000/431564: 171
+ny:::::8000/467768: 173
+ny:::::9000/502531: 175
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-05.gz.data.delhi
+Total time taken: 176
+Total number of lines found = 522529
+Total number of lines With Coordinates = 169
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-05.gz.data.ny
+Total time taken: 176
+Total number of lines found = 522529
+Total number of lines With Coordinates = 9597
+ny:::::1000/66727: 180
+ny:::::2000/153143: 186
+del:::::100/173030: 187
+ny:::::3000/204262: 189
+ny:::::4000/247370: 191
+ny:::::5000/298292: 194
+ny:::::6000/355908: 198
+ny:::::7000/405832: 201
+ny:::::8000/443101: 203
+ny:::::9000/474831: 205
+ny:::::10000/505100: 208
+ny:::::11000/533453: 209
+ny:::::12000/555858: 211
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-06.gz.data.delhi
+Total time taken: 211
+Total number of lines found = 562252
+Total number of lines With Coordinates = 174
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-06.gz.data.ny
+Total time taken: 211
+Total number of lines found = 562252
+Total number of lines With Coordinates = 12253
+ny:::::1000/29290: 213
+ny:::::2000/133928: 219
+ny:::::3000/202601: 224
+ny:::::4000/254590: 227
+del:::::100/256620: 227
+ny:::::5000/299302: 230
+ny:::::6000/343944: 232
+ny:::::7000/389167: 235
+ny:::::8000/426479: 237
+ny:::::9000/458991: 239
+ny:::::10000/489618: 241
+ny:::::11000/520705: 243
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-07.gz.data.delhi
+Total time taken: 244
+Total number of lines found = 533663
+Total number of lines With Coordinates = 147
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-07.gz.data.ny
+Total time taken: 244
+Total number of lines found = 533663
+Total number of lines With Coordinates = 11399
+ny:::::1000/66893: 248
+ny:::::2000/165111: 254
+del:::::100/221811: 258
+ny:::::3000/226196: 258
+ny:::::4000/282602: 262
+ny:::::5000/340573: 265
+ny:::::6000/390020: 268
+ny:::::7000/429693: 271
+ny:::::8000/468332: 273
+ny:::::9000/503706: 275
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-08.gz.data.delhi
+Total time taken: 276
+Total number of lines found = 509910
+Total number of lines With Coordinates = 161
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-08.gz.data.ny
+Total time taken: 276
+Total number of lines found = 509910
+Total number of lines With Coordinates = 9182
+ny:::::1000/96378: 282
+ny:::::2000/182773: 287
+del:::::100/209445: 289
+ny:::::3000/247727: 291
+ny:::::4000/304879: 295
+ny:::::5000/362093: 298
+ny:::::6000/410487: 301
+ny:::::7000/451581: 304
+ny:::::8000/491088: 306
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-09.gz.data.delhi
+Total time taken: 307
+Total number of lines found = 499136
+Total number of lines With Coordinates = 168
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-09.gz.data.ny
+Total time taken: 307
+Total number of lines found = 499136
+Total number of lines With Coordinates = 8199
+ny:::::1000/55547: 310
+ny:::::2000/185068: 318
+del:::::100/199457: 319
+ny:::::3000/240146: 322
+ny:::::4000/295602: 325
+ny:::::5000/349748: 328
+ny:::::6000/402693: 332
+ny:::::7000/450590: 335
+ny:::::8000/491521: 337
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-10.gz.data.delhi
+Total time taken: 338
+Total number of lines found = 509547
+Total number of lines With Coordinates = 164
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-10.gz.data.ny
+Total time taken: 338
+Total number of lines found = 509547
+Total number of lines With Coordinates = 8466
+ny:::::1000/42836: 341
+ny:::::2000/171233: 349
+ny:::::3000/232586: 353
+del:::::100/234909: 353
+ny:::::4000/285070: 356
+ny:::::5000/336539: 359
+ny:::::6000/399525: 363
+ny:::::7000/448860: 366
+ny:::::8000/488247: 369
+ny:::::9000/527349: 371
+ny:::::10000/565529: 373
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-11.gz.data.delhi
+Total time taken: 373
+Total number of lines found = 569019
+Total number of lines With Coordinates = 163
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-11.gz.data.ny
+Total time taken: 373
+Total number of lines found = 569019
+Total number of lines With Coordinates = 10094
+ny:::::1000/98169: 380
+ny:::::2000/179769: 385
+del:::::100/189485: 385
+ny:::::3000/236077: 388
+ny:::::4000/292272: 392
+ny:::::5000/350777: 395
+ny:::::6000/401871: 398
+ny:::::7000/441079: 401
+ny:::::8000/477682: 403
+ny:::::9000/508337: 405
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-12.gz.data.delhi
+Total time taken: 406
+Total number of lines found = 532431
+Total number of lines With Coordinates = 183
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-12.gz.data.ny
+Total time taken: 407
+Total number of lines found = 532431
+Total number of lines With Coordinates = 9726
+ny:::::1000/72186: 411
+del:::::100/111208: 414
+ny:::::2000/172716: 417
+ny:::::3000/237641: 421
+ny:::::4000/297773: 425
+ny:::::5000/347798: 428
+ny:::::6000/384910: 430
+ny:::::7000/423193: 433
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-13.gz.data.delhi
+Total time taken: 435
+Total number of lines found = 457736
+Total number of lines With Coordinates = 188
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-13.gz.data.ny
+Total time taken: 435
+Total number of lines found = 457736
+Total number of lines With Coordinates = 7822
+ny:::::1000/115862: 442
+ny:::::2000/190747: 447
+del:::::100/226416: 449
+ny:::::3000/255050: 451
+ny:::::4000/312323: 454
+ny:::::5000/355822: 457
+ny:::::6000/395383: 459
+ny:::::7000/432020: 462
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-14.gz.data.delhi
+Total time taken: 463
+Total number of lines found = 456154
+Total number of lines With Coordinates = 150
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-14.gz.data.ny
+Total time taken: 463
+Total number of lines found = 456154
+Total number of lines With Coordinates = 7538
+ny:::::1000/117496: 470
+ny:::::2000/197567: 475
+del:::::100/252354: 479
+ny:::::3000/263889: 479
+ny:::::4000/317776: 483
+ny:::::5000/359439: 485
+ny:::::6000/395274: 488
+ny:::::7000/430854: 490
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-15.gz.data.delhi
+Total time taken: 491
+Total number of lines found = 457952
+Total number of lines With Coordinates = 128
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-15.gz.data.ny
+Total time taken: 491
+Total number of lines found = 457952
+Total number of lines With Coordinates = 7737
+----------------------------------------------------------------------
+Final results:[{'input_file': 'gardenhose.2012-11-01.gz.data', 'tot_lines': 510124, 'loc_lines_del': 149, 'loc_lines_ny': 8454, 'del_file': '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-01.gz.data.delhi', 'ny_file': '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-01.gz.data.ny'}, {'input_file': 'gardenhose.2012-11-02.gz.data', 'tot_lines': 519546, 'loc_lines_del': 203, 'loc_lines_ny': 9744, 'del_file': '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-02.gz.data.delhi', 'ny_file': '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-02.gz.data.ny'}, {'input_file': 'gardenhose.2012-11-03.gz.data', 'tot_lines': 541883, 'loc_lines_del': 182, 'loc_lines_ny': 9619, 'del_file': '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-03.gz.data.delhi', 'ny_file': '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-03.gz.data.ny'}, {'input_file': 'gardenhose.2012-11-04.gz.data', 'tot_lines': 583108, 'loc_lines_del': 201, 'loc_lines_ny': 11033, 'del_file': '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-04.gz.data.delhi', 'ny_file': '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-04.gz.data.ny'}, {'input_file': 'gardenhose.2012-11-05.gz.data', 'tot_lines': 522529, 'loc_lines_del': 169, 'loc_lines_ny': 9597, 'del_file': '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-05.gz.data.delhi', 'ny_file': '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-05.gz.data.ny'}, {'input_file': 'gardenhose.2012-11-06.gz.data', 'tot_lines': 562252, 'loc_lines_del': 174, 'loc_lines_n

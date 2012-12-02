@@ -1,0 +1,26 @@
+Getting del and ny data from files:
+----------------------------------------------------------------------
+Final results:[]
+Total Lines found: 0
+Total delhi lines with coordinates: 0
+Total ny lines with coordinates: 0
+----------------------------------------------------------------------
+ny:::::1000/42421: 4
+ny:::::2000/163606: 11
+del:::::100/220967: 15
+ny:::::3000/228685: 15
+ny:::::4000/282780: 18
+ny:::::5000/343713: 22
+ny:::::6000/401101: 26
+ny:::::7000/449144: 29
+ny:::::8000/490906: 31
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-01.gz.data.delhi
+Total time taken: 32
+Total number of lines found = 510124
+Total number of lines With Coordinates = 149
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-01.gz.data.ny
+Total time taken: 32
+Total number of lines found = 510124
+Total number of lines With Coordinates = 8454
+----------------------------------------------------------------------
+Final results:[{'tot_lines': 510124, 'loc_lines': 149, 'type': 'del'}, {'tot_lines': 510124, 'loc_lines': 8454, 'type': 'ny'}]

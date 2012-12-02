@@ -1,0 +1,115 @@
+Getting del and ny data from files:
+----------------------------------------------------------------------
+Final results:[]
+Total Lines found: 0
+Total delhi lines with coordinates: 0
+Total ny lines with coordinates: 0
+----------------------------------------------------------------------
+ny:::::1000/42421: 3
+ny:::::2000/163606: 11
+del:::::100/220967: 14
+ny:::::3000/228685: 15
+ny:::::4000/282780: 18
+ny:::::5000/343713: 22
+ny:::::6000/401101: 25
+ny:::::7000/449144: 28
+ny:::::8000/490906: 30
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-01.gz.data.delhi
+Total time taken: 32
+Total number of lines found = 510124
+Total number of lines With Coordinates = 149
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-01.gz.data.ny
+Total time taken: 32
+Total number of lines found = 510124
+Total number of lines With Coordinates = 8454
+----------------------------------------------------------------------
+Final results:[{'tot_lines': 510124, 'loc_lines_del': 149, 'loc_lines_ny': 8454}]
+Total Lines found: 510124
+Total delhi lines with coordinates: 149
+Total ny lines with coordinates: 8454
+----------------------------------------------------------------------
+ny:::::1000/41009: 34
+ny:::::2000/152414: 41
+del:::::100/165001: 42
+ny:::::3000/219749: 45
+ny:::::4000/271312: 48
+ny:::::5000/320675: 51
+ny:::::6000/366627: 54
+ny:::::7000/411678: 57
+ny:::::8000/452106: 59
+ny:::::9000/491674: 62
+del:::::200/511293: 63
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-02.gz.data.delhi
+Total time taken: 63
+Total number of lines found = 519546
+Total number of lines With Coordinates = 203
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-02.gz.data.ny
+Total time taken: 63
+Total number of lines found = 519546
+Total number of lines With Coordinates = 9744
+----------------------------------------------------------------------
+Final results:[{'tot_lines': 510124, 'loc_lines_del': 149, 'loc_lines_ny': 8454}, {'tot_lines': 519546, 'loc_lines_del': 203, 'loc_lines_ny': 9744}]
+Total Lines found: 1029670
+Total delhi lines with coordinates: 352
+Total ny lines with coordinates: 18198
+----------------------------------------------------------------------
+ny:::::1000/37515: 66
+ny:::::2000/137615: 72
+del:::::100/187651: 75
+ny:::::3000/216921: 77
+ny:::::4000/271060: 80
+ny:::::5000/325741: 83
+ny:::::6000/380045: 87
+ny:::::7000/430273: 90
+ny:::::8000/475024: 92
+ny:::::9000/515728: 95
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-03.gz.data.delhi
+Total time taken: 97
+Total number of lines found = 541883
+Total number of lines With Coordinates = 182
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-03.gz.data.ny
+Total time taken: 97
+Total number of lines found = 541883
+Total number of lines With Coordinates = 9619
+----------------------------------------------------------------------
+Final results:[{'tot_lines': 510124, 'loc_lines_del': 149, 'loc_lines_ny': 8454}, {'tot_lines': 519546, 'loc_lines_del': 203, 'loc_lines_ny': 9744}, {'tot_lines': 541883, 'loc_lines_del': 182, 'loc_lines_ny': 9619}]
+Total Lines found: 1571553
+Total delhi lines with coordinates: 534
+Total ny lines with coordinates: 27817
+----------------------------------------------------------------------
+ny:::::1000/36199: 99
+ny:::::2000/135655: 105
+del:::::100/169846: 107
+ny:::::3000/223731: 110
+ny:::::4000/273923: 113
+ny:::::5000/322863: 116
+ny:::::6000/380040: 120
+ny:::::7000/427903: 123
+ny:::::8000/471266: 125
+ny:::::9000/509930: 128
+ny:::::10000/545408: 130
+del:::::200/579067: 132
+ny:::::11000/582125: 132
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-04.gz.data.delhi
+Total time taken: 132
+Total number of lines found = 583108
+Total number of lines With Coordinates = 201
+File Stats for: /Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/cities/gardenhose.2012-11-04.gz.data.ny
+Total time taken: 132
+Total number of lines found = 583108
+Total number of lines With Coordinates = 11033
+----------------------------------------------------------------------
+Final results:[{'tot_lines': 510124, 'loc_lines_del': 149, 'loc_lines_ny': 8454}, {'tot_lines': 519546, 'loc_lines_del': 203, 'loc_lines_ny': 9744}, {'tot_lines': 541883, 'loc_lines_del': 182, 'loc_lines_ny': 9619}, {'tot_lines': 583108, 'loc_lines_del': 201, 'loc_lines_ny': 11033}]
+Total Lines found: 2154661
+Total delhi lines with coordinates: 735
+Total ny lines with coordinates: 38850
+----------------------------------------------------------------------
+ny:::::1000/67580: 136
+ny:::::2000/161591: 142
+del:::::100/196271: 144
+ny:::::3000/219313: 146
+ny:::::4000/276775: 149
+ny:::::5000/330472: 153
+ny:::::6000/387401: 156
+ny:::::7000/431564: 159
+ny:::::8000/467768: 161
