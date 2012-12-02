@@ -84,7 +84,7 @@ def getAllLocations(f, outf):
     log('File Stats for: ' + f.name)
     log('Total time taken: ' + str((now_time-start_time).seconds))
     log('Total number of lines found = ' + str(tot_lines))
-    log('Total number of lines With Coordinates = ' + str(loc_lines))
+    log('Total number of lines With Locations = ' + str(loc_lines))
     ret = [f.name,tot_lines, loc_lines]
     return ret
 
