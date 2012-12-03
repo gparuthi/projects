@@ -1,13 +1,14 @@
-import datetime
+from datetime import datetime
 
-start_time = datetime.now()
-
-LOGFILE_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/logs/' + 'CityData.'+str(datetime.now())+'.log'
-LOGFILE = open(LOGFILE_PATH,'w')
+class logger(obj):
+    def __init__(self):
+        self.start_time = datetime.now()
+        self.LOGFILE_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/logs/' + 'CityData.'+str(datetime.now())+'.log'
+        self.LOGFILE = open(LOGFILE_PATH,'w')
 
 def log(log_str):
-    print str(log_str)
-    LOGFILE.write(str(log_str) + '\n')
+    print '[' + str(datetime.now()) +'] '+ str(log_str)
+    LOGFILE.write('[' + str(datetime.now()) +'] '+ str(log_str) + '\n')
 
 def log_file_stats(fname, tot_lines, loc_lines):
     now_time = datetime.now()

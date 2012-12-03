@@ -8,13 +8,16 @@ import nltk
 from ujson import loads, dumps
 from datetime import datetime
 import os
-import log
-from log import log
+from log import logger
 from city import City
 
 DELF_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/locations_cities/'+'del_11_1_to_11_15'+'.data'
 NYF_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/locations_cities/'+'ny_11_1_to_11_15'+'.data'
+logo = logger('City_Location')
 
+def log(str):
+    logo.log(str)
+    
 
 def get_nouns(text, city):
     sentences = nltk.sent_tokenize(text) # NLTK default sentence segmenter
@@ -50,7 +53,7 @@ def analyze_city(f, loc):
 
 def getTextCity(f):
     log('Processing file: ' + f.name)
-    # define vars                                                                                                                                               start_time = datetime.now()
+    # define vars
     loc_lines = 0
     tot_lines = 1
     line = f.readline()
@@ -63,13 +66,13 @@ def getTextCity(f):
             return text
         tot_lines+=1
         line = f.readline()
-    log(f.name + '::tot_lines: ' + str(tot_lines))
+    logo.log_file_stats(f.name, tot_lines, tot_lines)
     return text
 
 def get_pos_tags(text):
     a
 
-def getLineCity(f):
+def getLineCity(f, city):
     log('Processing file: ' + f.name)
     # define vars                                                                                                                                               start_time = datetime.now()
     loc_lines = 0
@@ -80,13 +83,14 @@ def getLineCity(f):
         rec = loads(line)
         text = rec['text'].encode('utf-8')
         # get pos_tags for the line and write to output file
-        get_nouns(text, delc)
+        get_nouns(text, city)
         if tot_lines %100 ==0:
             log(f.name+ '::tot_lines: ' + str(tot_lines))
         tot_lines+=1
         line = f.readline()
-    log(f.name + '::tot_lines: ' + str(tot_lines))
+    logo.log_file_stats(f.name, tot_lines, tot_lines)
     return text
+
 def post_tag(sentences):
     tdf={}
     i=0
