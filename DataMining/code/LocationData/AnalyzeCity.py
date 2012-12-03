@@ -35,6 +35,21 @@ def get_nouns(text, city):
                         city.tdf[w[0]] = 1
     return city.tdf
 
+def get_all(text, city):
+    sentences = nltk.sent_tokenize(text) # NLTK default sentence segmenter
+    sentences = [nltk.word_tokenize(sent) for sent in sentences] # NLTK word tokenizer
+    #sentences = post_tag(sentences)
+    #print sentences
+    for sent in sentences:
+        #print sent
+        #a = nltk.pos_tag(sent) 
+        for w in sent:
+            if w in city.tdf:
+                city.tdf[w] +=1
+            else:
+                city.tdf[w] = 1
+    return city.tdf
+
 def analyze_city(f, loc):
     log('Processing file: ' + f.name)
     # define vars
@@ -83,30 +98,25 @@ def getLineCity(f, city):
         rec = loads(line)
         text = rec['text'].encode('utf-8')
         # get pos_tags for the line and write to output file
-        get_nouns(text, city)
-        if tot_lines %100 ==0:
+        get_all(text, city)
+        
+        if tot_lines %1000 ==0:
             log(f.name+ '::tot_lines: ' + str(tot_lines))
         tot_lines+=1
         line = f.readline()
     logo.log_file_stats(f.name, tot_lines, tot_lines)
-    return text
+    city.tdf_class = post_tag(city.tdf)
+    return city
 
-def post_tag(sentences):
-    tdf={}
+def post_tag(intdf):
+    log('starting pos_tag analysis on the final tdf')
     i=0
-    for sent in sentences:
-        if i % len(sentences)/100 == 0:
-            print str(i) + '/' + str(len(sentences))
-            print sent
-        i+=1
-        a = nltk.pos_tag(sent)
-        for w in a:
-            if w[1][0] == 'N':
-                if w[0] in tdf:
-                    tdf[w[0]] +=1
-                else:
-                    tdf[w[0]] = 1
-    return tdf
+    posts = nltk.pos_tag(intdf.keys())
+    log('Done')
+    return dict((x,y) for x,y in posts)
+
+    
+        
 
 
 delc = City('delhi',None)

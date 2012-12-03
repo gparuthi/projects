@@ -1,14 +1,14 @@
 from datetime import datetime
 
-class logger(obj):
+class logger(object):
     def __init__(self, fname):
         self.start_time = datetime.now()
         self.LOGFILE_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/logs/' + fname + '.' + str(datetime.now()) + '.log'
-        self.LOGFILE = open(LOGFILE_PATH, 'w')
+        self.LOGFILE = open(self.LOGFILE_PATH, 'w')
 
     def log(self,log_str):
         print '[' + str(datetime.now()) + '] ' + str(log_str)
-        LOGFILE.write('[' + str(datetime.now()) + '] ' + str(log_str) + '\n')
+        self.LOGFILE.write('[' + str(datetime.now()) + '] ' + str(log_str) + '\n')
 
     def log_file_stats(self,fname, tot_lines, loc_lines):
         now_time = datetime.now()

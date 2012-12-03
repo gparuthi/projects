@@ -3,15 +3,15 @@ Created on Dec 2, 2012
 
 @author: gparuthi
 '''
-
-
+from log import log
 
 class City(object):
     def __init__(self,name,fname):
         self.name = name
         self.tdf = {}
-        self.fname = fname
-        self.f = open(fname,'w')
+        if fname != None:
+            self.fname = fname
+            self.f = open(fname,'w')
         self.tuples = []
         self.wordc = 0
         self.linec = 0
@@ -24,8 +24,8 @@ class City(object):
         else:
             self.tdf[tuple] = 1
         self.wordc += 1
-        if self.wordc % 10000 ==0:
-            log(self.get_top_words())
+        if self.wordc % 100 ==0:
+            print(self.get_top_words())
         
         
     def get_top_words(self):
@@ -36,5 +36,5 @@ class City(object):
         self.f.write(line)
         self.linec += 1
         if self.linec % 100000 == 0:
-            log (str(self.linec) + ':' + self.name)
+            print (str(self.linec) + ':' + self.name)
         

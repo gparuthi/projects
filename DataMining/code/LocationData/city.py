@@ -3,7 +3,6 @@ Created on Dec 2, 2012
 
 @author: gparuthi
 '''
-from log import log
 
 class City(object):
     def __init__(self,name,fname):
@@ -15,6 +14,7 @@ class City(object):
         self.tuples = []
         self.wordc = 0
         self.linec = 0
+        self.tdf_class = {}
 
     def add_tuple(self, tuple):
         #self.tuples.append(tuple)
