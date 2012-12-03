@@ -4,6 +4,7 @@ from datetime import datetime
 import os
 import log
 from log import log
+from city import City
 
 # ALGO:
 # read all files in the location dir
@@ -19,59 +20,6 @@ NYF_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/locati
 ALL_LOCS_DIR = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/locations_all/'
 
 
-
-class City(object):
-    def __init__(self,name,fname):
-        self.name = name
-        self.tdf = {}
-        self.fname = fname
-        self.f = open(fname,'w')
-        self.tuples = []
-        self.wordc = 0
-        self.linec = 0
-
-    def add_tuple(self, tuple):
-        #self.tuples.append(tuple)
-        #if len(tuples) == 1000
-        if tuple in self.tdf:
-            self.tdf[tuple] += 1
-        else:
-            self.tdf[tuple] = 1
-        self.wordc += 1
-        if self.wordc % 10000 ==0:
-            log(self.get_top_words())
-        
-        
-    def get_top_words(self):
-        # return the top 10 from the tdf
-        return self.name + ':: top words here. Size is : '+ str(len(self.tdf))  
-
-    def write_to_file(self, line):
-        self.f.write(line)
-        self.linec += 1
-        if self.linec % 100000 == 0:
-            log (str(self.linec) + ':' + self.name)
-        
-def traverse(t):
-    try:
-        t.node
-    except AttributeError:
-        return
-    else:
-        if t.node == 'NP':  print t.sen  # or do something else
-        else:
-            for child in t:
-                traverse(child)
-
-def get_nouns(text, city):
-    sentences = nltk.sent_tokenize(text) # NLTK default sentence segmenter
-    sentences = [nltk.word_tokenize(sent) for sent in sentences] # NLTK word tokenizer
-    sentences = [nltk.pos_tag(sent) for sent in sentences] # NLTK POS tagger
-    for t in sentences[0]:
-        # if the type is NN, NNP
-        if t[1][0] == 'N':
-            # add this to the final tuples
-            city.add_tuple(t)
             
 def get_location(rec):
     #check for delhi vs ny
@@ -100,6 +48,7 @@ def process_file(f):
         line = f.readline()
     log(f.name + '::tot_lines: ' + str(tot_lines))
 
+### This method seperates the files to delhi and ny data
 def start(dir):
     flist = os.listdir(dir)
     for fname in flist:
