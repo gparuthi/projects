@@ -19,13 +19,19 @@ NYF_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/locati
 def get_nouns(text, city):
     sentences = nltk.sent_tokenize(text) # NLTK default sentence segmenter
     sentences = [nltk.word_tokenize(sent) for sent in sentences] # NLTK word tokenizer
-    sentences = [nltk.pos_tag(sent) for sent in sentences] # NLTK POS tagger
-    for t in sentences[0]:
-        # if the type is NN, NNP
-        if t[1][0] == 'N':
-            # add this to the final tuples
-            city.add_tuple(t)
-            
+    #sentences = post_tag(sentences)
+    #print sentences
+    for sent in sentences:
+        a = nltk.pos_tag(sent) 
+        for w in a:
+            for w in a:
+                if w[1][0] == 'N':
+                    if w[0] in city.tdf:
+                        city.tdf[w[0]] +=1
+                    else:
+                        city.tdf[w[0]] = 1
+    return city.tdf
+
 def analyze_city(f, loc):
     log('Processing file: ' + f.name)
     # define vars
@@ -36,14 +42,72 @@ def analyze_city(f, loc):
     while line:
         rec = loads(line)
         noun_list = get_nouns(rec['text'], loc)
-        if tot_lines %10000 ==0:
+        if tot_lines %1000 ==0:
             log(f.name+ '::tot_lines: ' + str(tot_lines))
         tot_lines+=1
         line = f.readline()
     log(f.name + '::tot_lines: ' + str(tot_lines))
 
-delc = City('delhi','')
-nyc = City('nyc', '')
+def getTextCity(f):
+    log('Processing file: ' + f.name)
+    # define vars                                                                                                                                               start_time = datetime.now()
+    loc_lines = 0
+    tot_lines = 1
+    line = f.readline()
+    text = ''
+    while line:
+        rec = loads(line)
+        text += rec['text']
+        if tot_lines %10000 ==0:
+            log(f.name+ '::tot_lines: ' + str(tot_lines))
+            return text
+        tot_lines+=1
+        line = f.readline()
+    log(f.name + '::tot_lines: ' + str(tot_lines))
+    return text
+
+def get_pos_tags(text):
+    a
+
+def getLineCity(f):
+    log('Processing file: ' + f.name)
+    # define vars                                                                                                                                               start_time = datetime.now()
+    loc_lines = 0
+    tot_lines = 1
+    line = f.readline()
+    text = ''
+    while line:
+        rec = loads(line)
+        text = rec['text'].encode('utf-8')
+        # get pos_tags for the line and write to output file
+        get_nouns(text, delc)
+        if tot_lines %100 ==0:
+            log(f.name+ '::tot_lines: ' + str(tot_lines))
+        tot_lines+=1
+        line = f.readline()
+    log(f.name + '::tot_lines: ' + str(tot_lines))
+    return text
+def post_tag(sentences):
+    tdf={}
+    i=0
+    for sent in sentences:
+        if i % len(sentences)/100 == 0:
+            print str(i) + '/' + str(len(sentences))
+            print sent
+        i+=1
+        a = nltk.pos_tag(sent)
+        for w in a:
+            if w[1][0] == 'N':
+                if w[0] in tdf:
+                    tdf[w[0]] +=1
+                else:
+                    tdf[w[0]] = 1
+    return tdf
+
+
+delc = City('delhi',None)
+nyc = City('nyc', None)
 
 if __name__ == '__main__':
-    analyze_city(open(DELF_PATH), delc)
+    print 'in main'
+    #analyze_city(open(DELF_PATH), delc)

@@ -3,7 +3,7 @@ Created on Dec 2, 2012
 
 @author: gparuthi
 '''
-from log import log
+from log import 
 
 class City(object):
     def __init__(self,name,fname):
@@ -26,7 +26,6 @@ class City(object):
         self.wordc += 1
         if self.wordc % 100 ==0:
             print(self.get_top_words())
-        
         
     def get_top_words(self):
         # return the top 10 from the tdf
