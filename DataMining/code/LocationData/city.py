@@ -4,6 +4,8 @@ Created on Dec 2, 2012
 @author: gparuthi
 '''
 from nltk.corpus import stopwords
+import os
+from json import dumps
 
 class City(object):
     def __init__(self,name,fname):
@@ -17,6 +19,7 @@ class City(object):
         self.linec = 0
         self.tdf_class = {}
         self.timeline = {}
+        self.tdf_nouns = {}
 
     def add_tuple(self, tuple):
         #self.tuples.append(tuple)
@@ -51,7 +54,18 @@ class City(object):
             if k.lower() not in stopwords.words('english'): # is not a stopword
                 if self.tdf_class[k][0]=='N': # is a noun
                     self.tdf_nouns[k] = self.tdf[k]
-                    self.tuples.append((self.tdf[k],k))
-        self.tuples.sort()
+ #                   self.tuples.append((self.tdf[k],k))
+ #       self.tuples.sort()
 
+    @staticmethod
+    def writeJsonToFile(fpath,json):
+        if not os.path.isfile(fpath):
+            f= open(fpath,'wb')
+            f.write(dumps(json))
+            f.close()
+        else:
+            print 'file already exists: '+ fpath
     
+    def writeTimelineToFile(self,fpath):
+        ts = dict((x,self.timeline[x]) for x in self.timeline.keys())
+        writeJsonToFile(fpath,ts)
