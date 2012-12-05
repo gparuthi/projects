@@ -5,11 +5,14 @@ Created on Dec 4, 2012
 '''
 from json import loads
 import dateutil
+import matplotlib
+matplotlib.use('GTK')
 import matplotlib.dates
 from matplotlib.pyplot import plot_date,show,figure
 from StdSuites.Type_Names_Suite import rotation
 
-dir = '/Users/gparuthi/Documents/Work/PatternsInCommunity/projects/DataMining/uncompressed/locations_cities'
+dir = '../../uncompressed/locations_cities'
+
 
 def getDelhiHist(fpath):
     print 'Generating histogram for timeline' + fpath
@@ -48,7 +51,7 @@ def genHist(json):
             rotation=30, size='small'
             
             )
-
+    print 'done processing. Now showing...' 
     show()
     
     #plot_date(dates, ts.values())
