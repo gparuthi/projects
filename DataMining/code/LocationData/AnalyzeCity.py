@@ -18,7 +18,15 @@ logo = logger('City_Location')
 
 def log(str):
     logo.log(str)
-    
+
+
+def writeJsonToFile(fpath,json):
+    if not os.path.isfile(fpath):
+        f= open(fpath,'wb')
+        f.write(dumps(json))
+        f.close()
+    else:
+        print 'file already exists: '+ fpath    
 
 def get_nouns(text, city):
     sentences = nltk.sent_tokenize(text) # NLTK default sentence segmenter
