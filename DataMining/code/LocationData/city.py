@@ -3,6 +3,7 @@ Created on Dec 2, 2012
 
 @author: gparuthi
 '''
+from nltk.corpus import stopwords
 
 class City(object):
     def __init__(self,name,fname):
@@ -15,6 +16,7 @@ class City(object):
         self.wordc = 0
         self.linec = 0
         self.tdf_class = {}
+        self.timeline = {}
 
     def add_tuple(self, tuple):
         #self.tuples.append(tuple)
@@ -30,6 +32,10 @@ class City(object):
         
     def get_top_words(self):
         # return the top 10 from the tdf
+        l = len(self.tuples)
+        for i in range(l-100,l-1):
+            print self.tuples[i]
+
         return self.name + ':: top words here. Size is : '+ str(len(self.tdf))  
 
     def write_to_file(self, line):
@@ -38,3 +44,14 @@ class City(object):
         if self.linec % 100000 == 0:
             print (str(self.linec) + ':' + self.name)
         
+    def clean_tdf(self):
+        print 'Generating tuples for nouns in the tdf for :' + self.name 
+        self.tuples = []
+        for k in self.tdf:
+            if k.lower() not in stopwords.words('english'): # is not a stopword
+                if self.tdf_class[k][0]=='N': # is a noun
+                    self.tdf_nouns[k] = self.tdf[k]
+                    self.tuples.append((self.tdf[k],k))
+        self.tuples.sort()
+
+    
