@@ -20,13 +20,6 @@ def log(str):
     logo.log(str)
 
 
-def writeJsonToFile(fpath,json):
-    if not os.path.isfile(fpath):
-        f= open(fpath,'wb')
-        f.write(dumps(json))
-        f.close()
-    else:
-        print 'file already exists: '+ fpath    
 
 def get_nouns(text, city):
     sentences = nltk.sent_tokenize(text) # NLTK default sentence segmenter
@@ -135,7 +128,8 @@ def getTimesCity(f, city):
 
 def getLineCity(f, city):
     log('Processing file: ' + f.name)
-    # define vars                                                                                                                                               start_time = datetime.now()
+    # define vars 
+    start_time = datetime.now()
     loc_lines = 0
     tot_lines = 1
     line = f.readline()

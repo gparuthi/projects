@@ -5,6 +5,7 @@ class logger(object):
         self.start_time = datetime.now()
         self.LOGFILE_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/logs/' + fname + '.' + str(datetime.now()) + '.log'
         self.LOGFILE = open(self.LOGFILE_PATH, 'w')
+        print 'logfile initiated at : ' + self.LOGFILE_PATH
 
     def log(self,log_str):
         print '[' + str(datetime.now()) + '] ' + str(log_str)

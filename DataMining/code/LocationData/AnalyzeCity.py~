@@ -8,13 +8,25 @@ import nltk
 from ujson import loads, dumps
 from datetime import datetime
 import os
-import log
-from log import log, log_file_stats, LOGFILE
+from log import logger
 from city import City
+from dateutil.parser import parse
 
 DELF_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/locations_cities/'+'del_11_1_to_11_15'+'.data'
 NYF_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/locations_cities/'+'ny_11_1_to_11_15'+'.data'
+logo = logger('City_Location')
 
+def log(str):
+    logo.log(str)
+
+
+def writeJsonToFile(fpath,json):
+    if not os.path.isfile(fpath):
+        f= open(fpath,'wb')
+        f.write(dumps(json))
+        f.close()
+    else:
+        print 'file already exists: '+ fpath    
 
 def get_nouns(text, city):
     sentences = nltk.sent_tokenize(text) # NLTK default sentence segmenter
@@ -30,6 +42,37 @@ def get_nouns(text, city):
                         city.tdf[w[0]] +=1
                     else:
                         city.tdf[w[0]] = 1
+    return city.tdf
+
+def get_timeline(text, date, city):
+    sentences = nltk.sent_tokenize(text) # NLTK default sentence segmenter
+    sentences = [nltk.word_tokenize(sent) for sent in sentences] # NLTK word tokenizer
+    #sentences = post_tag(sentences)
+    #print sentences
+    for sent in sentences:
+        #print sent
+        #a = nltk.pos_tag(sent) 
+        for w in sent:
+            if w in city.tdf_nouns:
+                if date in city.timeline:
+                    city.timeline[date].append(w) # add word to that date key
+                else:
+                    city.timeline[date] = []
+    return city.tdf
+
+def get_all(text, city):
+    sentences = nltk.sent_tokenize(text) # NLTK default sentence segmenter
+    sentences = [nltk.word_tokenize(sent) for sent in sentences] # NLTK word tokenizer
+    #sentences = post_tag(sentences)
+    #print sentences
+    for sent in sentences:
+        #print sent
+        #a = nltk.pos_tag(sent) 
+        for w in sent:
+            if w in city.tdf:
+                city.tdf[w] +=1
+            else:
+                city.tdf[w] = 1
     return city.tdf
 
 def analyze_city(f, loc):
@@ -50,7 +93,7 @@ def analyze_city(f, loc):
 
 def getTextCity(f):
     log('Processing file: ' + f.name)
-    # define vars                                                                                                                                               start_time = datetime.now()
+    # define vars
     loc_lines = 0
     tot_lines = 1
     line = f.readline()
@@ -63,11 +106,32 @@ def getTextCity(f):
             return text
         tot_lines+=1
         line = f.readline()
-    log_file_stats(f.name, tot_lines, tot_lines)
+    logo.log_file_stats(f.name, tot_lines, tot_lines)
     return text
 
-def get_pos_tags(text):
-    a
+def getTillHour(date):
+    ret = parse(date).replace(minute=0,second=0,tzinfo=None)
+    return ret
+
+def getTimesCity(f, city):
+    log('Processing file: ' + f.name)
+    # define vars                                                                                                                                               start_time = datetime.now()
+    loc_lines = 0
+    tot_lines = 1
+    line = f.readline()
+    text = ''
+    while line:
+        rec = loads(line)
+        text = rec['text'].encode('utf-8')
+        # get pos_tags for the line and write to output file
+        tweet_date = getTillHour(rec['created_at'])
+        get_timeline(text, tweet_date, city)
+        if tot_lines %1000 ==0:
+            log(f.name+ '::tot_lines: ' + str(tot_lines))
+        tot_lines+=1
+        line = f.readline()
+    logo.log_file_stats(f.name, tot_lines, tot_lines)
+    return city
 
 def getLineCity(f, city):
     log('Processing file: ' + f.name)
@@ -80,33 +144,30 @@ def getLineCity(f, city):
         rec = loads(line)
         text = rec['text'].encode('utf-8')
         # get pos_tags for the line and write to output file
-        get_nouns(text, city)
-        if tot_lines %100 ==0:
+        tweet_date = getTillHour(rec['created_at'])
+        get_all(text, tweet_date, city)
+        if tot_lines %1000 ==0:
             log(f.name+ '::tot_lines: ' + str(tot_lines))
         tot_lines+=1
         line = f.readline()
-    log(f.name + '::tot_lines: ' + str(tot_lines))
-    return text
-def post_tag(sentences):
-    tdf={}
+    logo.log_file_stats(f.name, tot_lines, tot_lines)
+    city.tdf_class = post_tag(city.tdf)
+    # get only nouns and those not in the stop words list
+    city.clean_tdf()
+    return city
+
+
+def post_tag(intdf):
+    log('starting pos_tag analysis on the final tdf')
     i=0
-    for sent in sentences:
-        if i % len(sentences)/100 == 0:
-            print str(i) + '/' + str(len(sentences))
-            print sent
-        i+=1
-        a = nltk.pos_tag(sent)
-        for w in a:
-            if w[1][0] == 'N':
-                if w[0] in tdf:
-                    tdf[w[0]] +=1
-                else:
-                    tdf[w[0]] = 1
-    return tdf
+    posts = nltk.pos_tag(intdf.keys())
+    log('Done')
+    return dict((x,y) for x,y in posts)
 
-
-delc = City('delhi',None)
-nyc = City('nyc', None)
+    
+        
+#delc = City('delhi',None)
+#nyc = City('nyc', None)
 
 if __name__ == '__main__':
     print 'in main'

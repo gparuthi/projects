@@ -18,7 +18,15 @@ logo = logger('City_Location')
 
 def log(str):
     logo.log(str)
-    
+
+
+def writeJsonToFile(fpath,json):
+    if not os.path.isfile(fpath):
+        f= open(fpath,'wb')
+        f.write(dumps(json))
+        f.close()
+    else:
+        print 'file already exists: '+ fpath    
 
 def get_nouns(text, city):
     sentences = nltk.sent_tokenize(text) # NLTK default sentence segmenter
@@ -127,7 +135,8 @@ def getTimesCity(f, city):
 
 def getLineCity(f, city):
     log('Processing file: ' + f.name)
-    # define vars                                                                                                                                               start_time = datetime.now()
+    # define vars 
+    start_time = datetime.now()
     loc_lines = 0
     tot_lines = 1
     line = f.readline()
@@ -143,7 +152,7 @@ def getLineCity(f, city):
         tot_lines+=1
         line = f.readline()
     logo.log_file_stats(f.name, tot_lines, tot_lines)
-    city.class = post_tag(city.tdf)
+    city.tdf_class = post_tag(city.tdf)
     # get only nouns and those not in the stop words list
     city.clean_tdf()
     return city

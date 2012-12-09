@@ -58,10 +58,10 @@ def checkLocation(rec):
                 loc = user_data['location'].lower()
             #print loc
                 return loc
-                if 'delhi' in loc or 'new york' in loc:
-                    return loc
-                else:
-                    return None
+#                if 'delhi' in loc or 'new york' in loc:
+#                    return loc
+#                else:
+#                    return None
             
 locs = {}
 
@@ -84,7 +84,7 @@ def getAllLocations(f, outf):
         location = checkLocation(rec) 
         if location != None:
             add_loc(location)
-            outf.write(line)
+            #outf.write(line)
             loc_lines += 1
             if (loc_lines%100000==0):
                 now_time = datetime.now()
@@ -143,7 +143,7 @@ def processLocs():
     flist = os.listdir(dir)
     res = []
     for fname in flist:
-        if 'gardenhose.2012-11-07.gz' in fname:
+        if 'gardenhose.2012-07-12.gz' not in fname:
             newf_name = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/locations_11_07_12/'+fname+'.data'
             if not os.path.isfile(newf_name):
                 f= process_file(dir+fname)
