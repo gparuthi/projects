@@ -1,0 +1,8 @@
+def getDiff():
+    for k in locs2:
+        if k in locs3:
+            diff = locs2[k]-locs3[k]
+            print k + '::' + str(diff)
+            locs_diff[k] = diff
+        else:
+            print k + ':: not found'
