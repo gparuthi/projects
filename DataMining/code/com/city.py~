@@ -23,11 +23,11 @@ class City(object):
         self.tdf_nouns = {}
         self.tdf_tags = {} # contains tdf tags
     
-    def generateTDF(self, input_files):
+    def generateTDF(self):
         self.bd.obj = self
         self.bdCheckCondition = self.CheckCondition
         self.bdDoSomething = self.DoSomething
-        self.bd.processFiles(input_files)
+        self.bd.processFiles()
         
         
     def CheckCondition(self,rec):
@@ -69,15 +69,12 @@ class City(object):
             if k.lower() not in stopwords.words('english'): # is not a stopword
                 if self.tdf_tags[k][0]=='N': # is a noun
                     self.tdf_nouns[k] = self.tdf[k]
-    
-    def tlCheck(self,rec):
-        return True
 
     def getTimeLine(self, bd):
-        self.bd.obj = self
-        self.bdCheckCondition = self.tlCheck 
+        self.bd.obj = bd
+        self.bdCheckCondition = self.CheckCondition
         self.bdDoSomething = self.bdTimeLineDS
-        self.bd.log_stats(self.bd.processFile(open(self.filep), None))
+        self.bd.log_stats(self.bd.processFiles(open(self.filep), None))
 
     def bdTimeLineDS(self, rec):
         tweet_date = parse(rec['created_at']).replace(minute=0,second=0)
@@ -106,5 +103,5 @@ class City(object):
             print 'file already exists: '+ fpath
     
     def writeTimelineToFile(self,fpath):
-        ts = dict((x.isoformat(),self.timeline[x]) for x in self.timeline.keys())
+        ts = dict((x,self.timeline[x]) for x in self.timeline.keys())
         City.writeJsonToFile(fpath,ts)

@@ -6,21 +6,21 @@ Created on Dec 10, 2012
 import os
 from datetime import datetime
 from ujson import loads
-import gzip
-class BigData(object):
+
+class BigData(dict):
     '''
     This handles common things associated with big data
     '''
-    def __init__(self, paramets):
+    def __init__(self, params):
         '''
         Constructor
         '''
-#        print paramets
-        self.output_filep = paramets['out_file_path']  # data to output to
+        self.input_files = self.GetInputFiles(params['input_dir_path']) # data to crawl
+        self.output_filep = params['out_file_path']  # data to output to
         # calculate some stats here for the input files
-        self.logger = paramets['logger']
+        self.logger = params['logger']
         self.obj = None
-#        self.city = paramets['city']
+#        self.city = params['city']
     
     def log(self, str):
         self.logger.log(str)
@@ -31,18 +31,16 @@ class BigData(object):
             paths.append(os.path.join(dir,f))        
         return paths
     
-    def processFiles(self, input_files):
+    def processFiles(self):
         if os.path.isfile(self.output_filep):
-            err_msg = 'Aborting . Out file aready exists:'+ self.output_filep
+            err_msg = 'Aborting. Out file aready exists:'+ self.output_filep
             self.log(err_msg)
             return err_msg
         else:
             # create output file
             outf = open(self.output_filep,'w')  
-            for filep in input_files:
-
-                self.log('input gzip file:'+ filep)
-                f = gzip.open(filep)
+            for filep in self.input_files:
+                f = open(filep)
                 self.log_stats(self.processFile(f,outf))
                 f.close()
             outf.close()
@@ -51,17 +49,16 @@ class BigData(object):
         now_time = datetime.now()
         self.log('File Stats for: ' + t['fname'])
         self.log('Total time taken: ' + str((now_time-self.start_time).seconds))
-        self.log('Total number of lines found = ' + str(t['tot_lines']))
-        self.log('Total number of lines With Locations = ' + str(t['loc_lines']))
+        self.log('Total number of lines found = ' + t['tot_lines'])
+        self.log('Total number of lines With Locations = ' + t['loc_lines'])
     
     def processFile(self, f, outf):
-        self.log( 'finding all records with location for: ' + f.name)
+        self.log( 'finding all records with location delhi or new york data for: ' + f.name)
         self.start_time = datetime.now()
         tot_lines =0
         loc_lines =0
         line = f.readline()
         while line:
-            #print line
             rec = loads(line)
             tot_lines += 1
             condition = self.obj.bdCheckCondition(rec) 

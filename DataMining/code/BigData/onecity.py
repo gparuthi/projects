@@ -7,26 +7,29 @@ from DataMining.code.com.log import logger
 from DataMining.code.com.BigData import BigData
 from DataMining.code.com.city import City
 
+CITY_NAME = 'london'
+
 params = { 
-              'input_dir_path': '',
-              'out_file_path': '',
-              'timeline_path':'',
+              'input_dir_path': '/Users/gaurav/Documents/Work/Projects/DataMining/data/',
+              'out_file_path': '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/locations_cities/'+CITY_NAME+'/'+CITY_NAME+'.data',
+              'timeline_path':'/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/locations_cities/'+CITY_NAME+'/'+CITY_NAME+'.timeline.json',
               'logger' : logger('OneCity')  
               }
 
-def start():
+def start(params):
     
     # crawl each data file and get data for the given location
     # store the data in the output file    
-    bd = BigData(params['dir_path'],params['out_file_path'])
-    city = City('london',bd)
+    bd = BigData(params)
+    city = City(CITY_NAME,bd,params['out_file_path'])
+    input_files = bd.GetInputFiles(params['input_dir_path'])
     # Generate the tdf for the city
-    city.generateTDF()
+    city.generateTDF(input_files)
     # get nouns for the city
     city.getNounsTDF()
     
-    # load another bigData obj
-    params = {'input_file_path' : city.filep, 'out_file_path' : None, }
+    # load another bigData obj for generating timeline
+    params = {'input_dir_path':'', 'input_file_path' : city.filep, 'out_file_path' : None, 'logger':params['logger']}
     bd = BigData(params)
     # get timeline for city
     city.getTimeLine(bd)

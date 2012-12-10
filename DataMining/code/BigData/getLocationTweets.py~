@@ -3,13 +3,16 @@ from ujson import loads,dumps
 from datetime import datetime
 import os
 from pprint import pprint
+from DataMining.code.com.log import logger
 
-LOGFILE_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/logs/' + 'BigData.'+str(datetime.now())+'.log'
-LOGFILE = open(LOGFILE_PATH,'w')
+logo = logger('BigDataLocations')
+#LOGFILE_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/logs/' + 'BigData.'+str(datetime.now())+'.log'
+#LOGFILE = open(LOGFILE_PATH,'wb')
 
 def log(log_str):
-    print str(log_str)
-    LOGFILE.write(str(log_str) + '\n')
+    logo.log(log_str)
+#    print str(log_str)
+#    LOGFILE.write(str(log_str) + '\n')
 
 def log_final_stats(res):
     # res is an array of arrays
@@ -88,7 +91,7 @@ def getAllLocationsCount(f):
             loc_lines += 1
             if (loc_lines%100000==0):
                 now_time = datetime.now()
-                log(str(loc_lines) + '/' + str(tot_lines) + ': ' + str((now_time-start_time).seconds))
+                log(str(loc_lines) + '/' + str(tot_lines))
         line = f.readline()
     log('File Stats for: ' + f.name)
     log('Total time taken: ' + str((now_time-start_time).seconds))
@@ -179,4 +182,4 @@ def processLocs():
 
 # write a method to process the data and see if the location is something
 
-processLocs()
+#processLocs()

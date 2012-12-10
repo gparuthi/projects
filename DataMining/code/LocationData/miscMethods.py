@@ -11,6 +11,21 @@ def getDiff(locs2,locs3):
             print k + ':: not found :: ' + str(locs2[k])
     return locs_diff
 
+def getDiffAll(locs2,alllocs):
+    locs_diff = {}
+    for k in locs2:
+        if k in alllocs:
+            avg = float(alllocs[k])/15
+            diff_perc = float((locs2[k]-avg))/float(avg)*100
+            diff = locs2[k]-avg
+#            print k + '::' + str(diff)
+            locs_diff[k] = diff
+        else:
+#            if locs2[k] > 1100:
+            print k + ':: not found :: ' + str(locs2[k])
+    return locs_diff
+
+
 def writeJsonToFile(fpath,json):
     if not os.path.isfile(fpath):
         f= open(fpath,'wb')

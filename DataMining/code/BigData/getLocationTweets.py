@@ -66,9 +66,9 @@ def checkLocation(rec):
 #                else:
 #                    return None
             
-locs = {}
+all_locs = {}
 
-def add_loc(loc):
+def add_loc(locs,loc):
     if loc in locs:
         locs[loc] +=1
     else:
@@ -76,6 +76,7 @@ def add_loc(loc):
 
 def getAllLocationsCount(f):
     log( 'finding all records with location delhi or new york data for: ' + f.name)
+    locs = {}
     start_time = datetime.now()
     tot_lines =0
     loc_lines =0
@@ -86,13 +87,14 @@ def getAllLocationsCount(f):
         tot_lines += 1
         location = checkLocation(rec) 
         if location != None:
-            add_loc(location)
+            add_loc(locs,location)
             #outf.write(line)
             loc_lines += 1
             if (loc_lines%100000==0):
                 now_time = datetime.now()
                 log(str(loc_lines) + '/' + str(tot_lines))
         line = f.readline()
+    all_locs[f.name] = locs
     log('File Stats for: ' + f.name)
     log('Total time taken: ' + str((now_time-start_time).seconds))
     log('Total number of lines found = ' + str(tot_lines))
