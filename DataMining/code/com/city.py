@@ -43,7 +43,6 @@ class City(object):
                     
     def DoSomething(self, rec):
         text = rec['text'].encode('utf-8')
-        
         sentences = nltk.sent_tokenize(text) # NLTK default sentence segmenter
         sentences = [nltk.word_tokenize(sent) for sent in sentences] # NLTK word tokenizer
         #sentences = post_tag(sentences)
