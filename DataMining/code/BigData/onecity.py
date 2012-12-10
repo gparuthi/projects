@@ -26,9 +26,10 @@ def start():
     city.getNounsTDF()
     
     # load another bigData obj
-    params = {'input_file_path' : city.filep, out_file_path : None, }
+    params = {'input_file_path' : city.filep, 'out_file_path' : None, }
+    bd = BigData(params)
     # get timeline for city
-    city.getTimeLine()
+    city.getTimeLine(bd)
     # write timeline to file
     city.writeTimelineToFile(params['timeline_path'])
 

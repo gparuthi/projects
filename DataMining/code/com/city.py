@@ -8,8 +8,6 @@ import nltk
 import os
 from json import dumps
 from dateutil.parser import parse
-from DataMining.code.com import BigData
-
 
 class City(object):
     '''
