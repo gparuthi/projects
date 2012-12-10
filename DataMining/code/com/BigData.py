@@ -11,34 +11,28 @@ class BigData(object):
     '''
     This handles common things associated with big data
     '''
-    def __init__(self, paramets):
+    def __init__(self, logger):
         '''
         Constructor
         '''
-#        print paramets
-        self.output_filep = paramets['out_file_path']  # data to output to
-        # calculate some stats here for the input files
-        self.logger = paramets['logger']
+#       # calculate some stats here for the input files
+        self.logger = logger
         self.obj = None
 #        self.city = paramets['city']
     
     def log(self, str):
         self.logger.log(str)
     
-    def GetInputFiles(self, dir):
-        paths = []
-        for f in os.listdir(dir):
-            paths.append(os.path.join(dir,f))        
-        return paths
+
     
-    def processFiles(self, input_files):
-        if os.path.isfile(self.output_filep):
+    def processFiles(self, input_files, output_filep):
+        if os.path.isfile(output_filep):
             err_msg = 'Aborting . Out file aready exists:'+ self.output_filep
             self.log(err_msg)
             return err_msg
         else:
             # create output file
-            outf = open(self.output_filep,'w')  
+            outf = open(output_filep,'w')  
             for filep in input_files:
 
                 self.log('input gzip file:'+ filep)
