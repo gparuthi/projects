@@ -50,7 +50,7 @@ def get_timeline(text, date, city):
                 if date in city.timeline:
                     city.timeline[date].append(w) # add word to that date key
                 else:
-                    city.timeline[date] = []
+                    city.timeline[date] = [w]
     return city.tdf
 
 def get_all(text, city):

@@ -68,4 +68,4 @@ class City(object):
     
     def writeTimelineToFile(self,fpath):
         ts = dict((x,self.timeline[x]) for x in self.timeline.keys())
-        writeJsonToFile(fpath,ts)
+        City.writeJsonToFile(fpath,ts)
