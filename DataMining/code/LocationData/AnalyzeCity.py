@@ -108,7 +108,8 @@ def getTillHour(date):
 
 def getTimesCity(f, city):
     log('Processing file: ' + f.name)
-    # define vars                                                                                                                                               start_time = datetime.now()
+    # define vars
+    start_time = datetime.now()
     loc_lines = 0
     tot_lines = 1
     line = f.readline()

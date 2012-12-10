@@ -71,7 +71,7 @@ def add_loc(loc):
     else:
         locs[loc] = 1
 
-def getAllLocations(f, outf):
+def getAllLocationsCount(f):
     log( 'finding all records with location delhi or new york data for: ' + f.name)
     start_time = datetime.now()
     tot_lines =0
@@ -87,6 +87,31 @@ def getAllLocations(f, outf):
             #outf.write(line)
             loc_lines += 1
             if (loc_lines%100000==0):
+                now_time = datetime.now()
+                log(str(loc_lines) + '/' + str(tot_lines) + ': ' + str((now_time-start_time).seconds))
+        line = f.readline()
+    log('File Stats for: ' + f.name)
+    log('Total time taken: ' + str((now_time-start_time).seconds))
+    log('Total number of lines found = ' + str(tot_lines))
+    log('Total number of lines With Locations = ' + str(loc_lines))
+    ret = [f.name,tot_lines, loc_lines]
+    return ret
+
+def getAllLocations(f, outf):
+    log( 'finding all records with location delhi or new york data for: ' + f.name)
+    start_time = datetime.now()
+    tot_lines =0
+    loc_lines =0
+    line = f.readline()
+    ret = []
+    while line:
+        rec = loads(line)
+        tot_lines += 1
+        location = checkLocation(rec) 
+        if location != None:
+            outf.write(line)
+            loc_lines += 1
+            if (loc_lines%1000==0):
                 now_time = datetime.now()
                 log(str(loc_lines) + '/' + str(tot_lines) + ': ' + str((now_time-start_time).seconds))
         line = f.readline()
@@ -143,14 +168,13 @@ def processLocs():
     flist = os.listdir(dir)
     res = []
     for fname in flist:
-        if 'gardenhose.2012-07-12.gz' not in fname:
-            newf_name = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/locations_11_07_12/'+fname+'.data'
-            if not os.path.isfile(newf_name):
-                f= process_file(dir+fname)
-                coordsf = open(newf_name, 'wb')
-                res.append(getAllLocations(f, coordsf))
-            else:
-                print "Skipping file because data already exists at:" + newf_name
+        newf_name = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/locations_11_07_12/'+fname+'.data'
+        if not os.path.isfile(newf_name):
+            f= process_file(dir+fname)
+            #coordsf = open(newf_name, 'wb')
+            res.append(getAllLocationsCount(f))
+        else:
+            print "Skipping file because data already exists at:" + newf_name
     log_final_stats(res)
 
 # write a method to process the data and see if the location is something

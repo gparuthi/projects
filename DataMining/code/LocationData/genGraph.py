@@ -6,13 +6,36 @@ Created on Dec 4, 2012
 from json import loads
 import dateutil
 import matplotlib
-matplotlib.use('GTK')
+#matplotlib.use('GTK')
 import matplotlib.dates
 from matplotlib.pyplot import plot_date,show,figure
 from StdSuites.Type_Names_Suite import rotation
 
-dir = '../../uncompressed/locations_cities'
+dir = '../../uncompressed/locations_11_07_12'
+dir2 = '../../uncompressed/locations_11_07_12'
 
+def getCitiesHist(fpath):
+    f = open(fpath)
+    cities = loads(f.read())
+    for c in cities:
+        for t in cities[c]:
+            count = 0
+            for w in cities[c][t]:
+                count += cities[c][t][w]
+            cities[c][t] = count
+    return cities
+    
+def genMulCities(fpath):
+    print 'Generating histogram for timeline' + fpath
+    with open(fpath, 'r') as content_file:
+        content = content_file.read()
+    print len(content)
+    json = loads(content)
+    for c in json:
+        ts = {}
+        for k in json[c]:
+            ts[dateutil.parser.parse(k)] = json[c][k]
+        genHist(ts, c)
 
 def getDelhiHist(fpath):
     print 'Generating histogram for timeline' + fpath
@@ -20,15 +43,16 @@ def getDelhiHist(fpath):
         content = content_file.read()
     print len(content)
     json = loads(content)
-    genHist(json)
-
-def genHist(json):
-    # generate histogram on this dictionary
+    
     ts = {}
     for k in json:
         ts[dateutil.parser.parse(k)] = len(json[k])
+    genHist(ts, 'name')
     
-    data = ts.items()
+def genHist(json, name):
+    # generate histogram on this dictionary
+    print json
+    data = json.items()
     
     data.sort()
     
@@ -36,6 +60,8 @@ def genHist(json):
     y = [value for (date, value) in data]
     
     fig = figure()
+    
+    fig.canvas.set_window_title(name)
     
     graph = fig.add_subplot(111)
     
@@ -48,7 +74,7 @@ def genHist(json):
     # Set the xtick labels to correspond to just the dates you entered.
     graph.set_xticklabels(
             [date.strftime("%Y-%m-%d-%I") for (date, value) in data],
-            rotation=30, size='small'
+            rotation=90, size='small'
             
             )
     print 'done processing. Now showing...' 
@@ -58,5 +84,6 @@ def genHist(json):
     #show()
 
 if __name__ == '__main__':
-    getDelhiHist(dir+'/del_11_1_to_11_15.tsd')
-        
+    genMulCities(dir+'/5cities.timeline.json')
+    genHist()
+    print ''
