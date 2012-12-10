@@ -6,6 +6,8 @@ Created on Dec 9, 2012
 from DataMining.code.com.log import logger
 from DataMining.code.com.BigData import BigData
 from DataMining.code.com.city import City
+from DataMining.code.com.cities import Cities
+import os
 
 CITY_NAME = 'london'
 
@@ -16,8 +18,13 @@ params = {
               'logger' : logger('OneCity')  
               }
 
+def GetInputFiles(dir):
+    paths = []
+    for f in os.listdir(dir):
+        paths.append(os.path.join(dir,f))        
+    return paths
+
 def start(params):
-    
     # crawl each data file and get data for the given location
     # store the data in the output file    
     bd = BigData(params)
@@ -35,6 +42,17 @@ def start(params):
     city.getTimeLine(bd)
     # write timeline to file
     city.writeTimelineToFile(params['timeline_path'])
+
+def startm():
+    in_dir = '/Users/gaurav/Documents/Work/Projects/DataMining/data/'
+    out_dir = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompresed/all_locations/'
+    cits = {'delhi', 'london', 'washington'}
+    cs = Cities(cits, out_dir)
+    
+    input_files = GetInputFiles(in_dir)
+    cs.generateTDF(input_files)
+    cs.getNounsTDF()
+    cs.getTimeLine()
 
 if __name__ == '__main__':
     pass

@@ -10,6 +10,7 @@ import matplotlib
 import matplotlib.dates
 from matplotlib.pyplot import plot_date,show,figure
 from StdSuites.Type_Names_Suite import rotation
+from IPython import embed
 
 dir = '../../uncompressed/locations_11_07_12'
 dir2 = '../../uncompressed/locations_11_07_12'
@@ -48,6 +49,8 @@ def getDelhiHist(fpath):
     for k in json:
         ts[dateutil.parser.parse(k)] = len(json[k])
     genHist(ts, 'name')
+
+    embed()
     
 def genHist(json, name):
     # generate histogram on this dictionary
@@ -84,6 +87,6 @@ def genHist(json, name):
     #show()
 
 if __name__ == '__main__':
-    genMulCities(dir+'/5cities.timeline.json')
-    genHist()
+    #genMulCities(dir+'/5cities.timeline.json')
+    getDelhiHist('../../../temp.json_1')
     print ''
