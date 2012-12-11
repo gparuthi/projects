@@ -26,20 +26,21 @@ class BigData(object):
 
     
     def processFiles(self, input_files, output_filep):
-        if os.path.isfile(output_filep):
-            err_msg = 'Aborting . Out file aready exists:'+ self.output_filep
-            self.log(err_msg)
-            return err_msg
-        else:
-            # create output file
-            outf = open(output_filep,'w')  
-            for filep in input_files:
-
-                self.log('input gzip file:'+ filep)
-                f = gzip.open(filep)
-                self.log_stats(self.processFile(f,outf))
-                f.close()
-            outf.close()
+        outf = None
+        if output_filep != None:
+            if os.path.isfile(output_filep):
+                err_msg = 'Aborting . Out file aready exists:'+ self.output_filep
+                self.log(err_msg)
+                
+            else:
+                # create output file
+                outf = open(output_filep,'w')  
+        for filep in input_files:
+            self.log('input gzip file:'+ filep)
+            f = gzip.open(filep)
+            self.log_stats(self.processFile(f,outf))
+            f.close()
+        outf.close()
 
     def log_stats(self, t):
         now_time = datetime.now()

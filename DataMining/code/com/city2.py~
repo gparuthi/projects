@@ -20,8 +20,7 @@ class City2(object):
         self.timeline = {}
         self.tdf_nouns = {}
         self.tdf_tags = {} # contains tdf tags
-        self.filep = out_filep
-        self.fileo = open(self.filep,'w')
+    
        
     def tag_tdf(self):
         tags = nltk.pos_tag(self.tdf.keys())
@@ -39,11 +38,10 @@ class City2(object):
         return True
 
     def getTimeLine(self, bd):
-        bd = bd
-        bd.obj = self
+        self.bd.obj = self
         self.bdCheckCondition = self.tlCheck 
         self.bdDoSomething = self.bdTimeLineDS
-        bd.log_stats(bd.processFile(open(self.filep), None))
+        self.bd.log_stats(self.bd.processFile(open(self.filep), None))
 
     def bdTimeLineDS(self, rec):
         tweet_date = parse(rec['created_at']).replace(minute=0,second=0)
@@ -74,6 +72,3 @@ class City2(object):
     def writeTimelineToFile(self,fpath):
         ts = dict((x.isoformat(),self.timeline[x]) for x in self.timeline.keys())
         City.writeJsonToFile(fpath,ts)
-        
-    def write(self,line):
-        self.fileo.write(line)

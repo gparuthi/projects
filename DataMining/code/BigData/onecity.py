@@ -43,10 +43,13 @@ def start(params):
     # write timeline to file
     city.writeTimelineToFile(params['timeline_path'])
 
+
+in_dir = '/Users/gaurav/Documents/Work/Projects/DataMining/data/'
+out_dir = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompressed/all_locations/'
+cits = {'delhi', 'london', 'washington'}
+
 def startm():
-    in_dir = '/Users/gaurav/Documents/Work/Projects/DataMining/data/'
-    out_dir = '/Users/gaurav/Documents/Work/Projects/DataMining/uncompresed/all_locations/'
-    cits = {'delhi', 'london', 'washington'}
+
     cs = Cities(cits, out_dir)
     
     input_files = GetInputFiles(in_dir)
