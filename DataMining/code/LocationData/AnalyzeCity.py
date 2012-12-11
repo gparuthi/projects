@@ -37,7 +37,14 @@ def get_nouns(text, city):
                         city.tdf[w[0]] = 1
     return city.tdf
 
-def get_timeline(text, date, city):
+def get_timeline(date, city):
+    if date in city.timeline:
+        city.timeline[date] += 1 # add word to that date key
+    else:
+        city.timeline[date] = 1
+    return city.timeline
+
+def get_timeline_words(text, date, city):
     sentences = nltk.sent_tokenize(text) # NLTK default sentence segmenter
     sentences = [nltk.word_tokenize(sent) for sent in sentences] # NLTK word tokenizer
     #sentences = post_tag(sentences)
@@ -116,10 +123,11 @@ def getTimesCity(f, city):
     text = ''
     while line:
         rec = loads(line)
-        text = rec['text'].encode('utf-8')
+        #text = rec['text'].encode('utf-8')
         # get pos_tags for the line and write to output file
         tweet_date = getTillHour(rec['created_at'])
-        get_timeline(text, tweet_date, city)
+        #get_timeline(text, tweet_date, city)
+        get_timeline(tweet_date, city)
         if tot_lines %1000 ==0:
             log(f.name+ '::tot_lines: ' + str(tot_lines))
         tot_lines+=1

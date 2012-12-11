@@ -1,0 +1,11 @@
+sellocs = {}
+w= 'new york'
+
+for k in all_locs:
+    if k not in sellocs:
+        selllocs[k] = {}
+    d= all_locs[k]
+    for loc in d:
+        sellocs[w] = 0
+        if w in d:
+            sellocs[k][w] += d[w]

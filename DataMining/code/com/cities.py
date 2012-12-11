@@ -45,7 +45,7 @@ class Cities(object):
                     for k in self.d:
                         if k in loc:
                             self.curCity = k
-                            print k + ':' + loc
+                       #     print k + ':' + loc
                             return True
                         else:
                             return False
@@ -55,7 +55,7 @@ class Cities(object):
     def DoSomething(self, rec):
         text = rec['text'].encode('utf-8')
         loc = self.curCity
-        print loc
+        #print loc
         sentences = nltk.sent_tokenize(text) # NLTK default sentence segmenter
         sentences = [nltk.word_tokenize(sent) for sent in sentences] # NLTK word tokenizer
         #sentences = post_tag(sentences)
