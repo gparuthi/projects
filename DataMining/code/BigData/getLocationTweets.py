@@ -4,6 +4,7 @@ from datetime import datetime
 import os
 from pprint import pprint
 from DataMining.code.com.log import logger
+from dateutil.parser import parse
 
 logo = logger('BigDataLocations')
 #LOGFILE_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/logs/' + 'BigData.'+str(datetime.now())+'.log'
@@ -68,15 +69,21 @@ def checkLocation(rec):
             
 all_locs = {}
 
-def add_loc(locs,loc):
-    if loc in locs:
-        locs[loc] +=1
+def add_loc(locs,loc,time):
+    if time in locs:
+        if loc in locs[time]:
+            locs[time][loc] += 1
+        else:
+            locs[time][loc] = 1
     else:
-        locs[loc] = 1
+        locs[time] = {}
+
+def getTillHour(date):
+    ret = parse(date).replace(minute=0,second=0,tzinfo=None)
+    return ret
 
 def getAllLocationsCount(f):
     log( 'finding all records with location delhi or new york data for: ' + f.name)
-    locs = {}
     start_time = datetime.now()
     tot_lines =0
     loc_lines =0
@@ -87,14 +94,14 @@ def getAllLocationsCount(f):
         tot_lines += 1
         location = checkLocation(rec) 
         if location != None:
-            add_loc(locs,location)
+            tweet_date = getTillHour(rec['created_at'])
+            add_loc(all_locs,location,tweet_date)
             #outf.write(line)
             loc_lines += 1
             if (loc_lines%100000==0):
                 now_time = datetime.now()
                 log(str(loc_lines) + '/' + str(tot_lines))
         line = f.readline()
-    all_locs[f.name] = locs
     log('File Stats for: ' + f.name)
     log('Total time taken: ' + str((now_time-start_time).seconds))
     log('Total number of lines found = ' + str(tot_lines))
