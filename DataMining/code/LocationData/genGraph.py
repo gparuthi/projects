@@ -11,8 +11,9 @@ import matplotlib.dates
 from matplotlib.pyplot import plot_date,show,figure
 from StdSuites.Type_Names_Suite import rotation
 from IPython import embed
+import os
 
-dir = '../../uncompressed/locations_11_07_12'
+dir = '../../uncompressed/locations_cities'
 dir2 = '../../uncompressed/locations_11_07_12'
 
 def getCitiesHist(fpath):
@@ -33,10 +34,19 @@ def genMulCities(fpath):
     print len(content)
     json = loads(content)
     for c in json:
-        ts = {}
-        for k in json[c]:
-            ts[dateutil.parser.parse(k)] = json[c][k]
-        genHist(ts, c)
+        getCity(c,json[c])
+
+def genOneCity(c,fpath):
+    with open(fpath, 'r') as content_file:
+        content = content_file.read()
+    json = loads(content)
+    getCity(c,json)
+    
+def getCity(c,city_json):
+    ts = {}
+    for k in city_json:
+        ts[dateutil.parser.parse(k)] = city_json[k]
+    genHist(ts, c)
 
 def getDelhiHist(fpath):
     print 'Generating histogram for timeline' + fpath
@@ -88,5 +98,6 @@ def genHist(json, name):
 
 if __name__ == '__main__':
     #genMulCities(dir+'/5cities.timeline.json')
-    getDelhiHist('../../../temp.json_1')
+    #getDelhiHist('../../../temp.json_1')
+    genOneCity('nyc',os.path.join(dir,'del_11_1_to_11_15.new_timeline'))
     print ''

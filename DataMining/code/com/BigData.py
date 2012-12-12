@@ -23,8 +23,6 @@ class BigData(object):
     def log(self, str):
         self.logger.log(str)
     
-
-    
     def processFiles(self, input_files, output_filep):
         outf = None
         if output_filep != None:
@@ -71,3 +69,10 @@ class BigData(object):
             line = f.readline()
         ret = {'fname':f.name,'tot_lines': tot_lines, 'loc_lines': loc_lines}
         return ret
+    
+    @staticmethod
+    def GetInputFiles(dir):
+        paths = []
+        for f in os.listdir(dir):
+            paths.append(os.path.join(dir,f))        
+        return paths

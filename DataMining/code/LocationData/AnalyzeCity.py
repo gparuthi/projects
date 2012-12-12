@@ -19,8 +19,6 @@ logo = logger('City_Location')
 def log(str):
     logo.log(str)
 
-
-
 def get_nouns(text, city):
     sentences = nltk.sent_tokenize(text) # NLTK default sentence segmenter
     sentences = [nltk.word_tokenize(sent) for sent in sentences] # NLTK word tokenizer
@@ -165,9 +163,7 @@ def post_tag(intdf):
     i=0
     posts = nltk.pos_tag(intdf.keys())
     log('Done')
-    return dict((x,y) for x,y in posts)
-
-    
+    return dict((x,y) for x,y in posts)    
         
 #delc = City('delhi',None)
 #nyc = City('nyc', None)
