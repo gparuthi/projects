@@ -1,3 +1,5 @@
+import os
+from ujson import dumps
 
 #sellocs = {}
 
@@ -17,6 +19,15 @@ def getfnam(path):
     return m.group().replace('.','')
 
 
+def writeJsonToFile(fpath,json):
+    if not os.path.isfile(fpath):
+        f= open(fpath,'wb')
+        f.write(dumps(json))
+        f.close()
+    else:
+        print 'file already exists: '+ fpath
+
+## for the json with filename as keys 
 def write_to_file(all_locs, dir):
     for k in all_locs:
         fname = os.path.basename(k)
@@ -27,3 +38,27 @@ def write_to_file(all_locs, dir):
             f.write(dumps(all_locs[k]))
         else:
             print 'file already existing: '+ fpath
+
+## for the json with dates as keys
+def write_dates_json_to_file2(locs, filep):
+    json = {}
+    if not os.path.isfile(filep):
+        for k in locs.keys():
+            print k
+            datestr = k.isoformat() # get date str
+            json[datestr] = locs[k]
+        # write json to file
+        f = open(filep,'w')
+        f.write(dumps(json))
+    else:
+        print 'file already existing: '+ filep
+        
+def get_all_locs_i(locs):
+    ret = {}
+    for k in locs:
+        newk = k.lower().replace(',','').replace('.','')
+        if newk in ret:
+            ret[newk] += 1
+        else:
+            ret[newk] = 1
+    return ret

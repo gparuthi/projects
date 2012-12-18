@@ -11,13 +11,15 @@ class BigData(object):
     '''
     This handles common things associated with big data
     '''
-    def __init__(self, logger):
+    def __init__(self, logger, status_line_count = 1000):
         '''
         Constructor
         '''
 #       # calculate some stats here for the input files
         self.logger = logger
         self.obj = None
+        self.start_time = datetime.now()
+        self.status_line_count = status_line_count
 #        self.city = paramets['city']
     
     def log(self, str):
@@ -37,7 +39,7 @@ class BigData(object):
             self.log('input gzip file:'+ filep)
             f = gzip.open(filep)
             self.log_stats(self.processFile(f,outf))
-            f.close()
+            # f.close() # commenting this as this showed an error. need to find out what the real problem is though.
         outf.close()
 
     def log_stats(self, t):
@@ -49,7 +51,7 @@ class BigData(object):
     
     def processFile(self, f, outf):
         self.log( 'finding all records with location for: ' + f.name)
-        self.start_time = datetime.now()
+        
         tot_lines =0
         loc_lines =0
         line = f.readline()
@@ -63,7 +65,7 @@ class BigData(object):
                     outf.write(line)
                 self.obj.bdDoSomething(rec)
                 loc_lines += 1
-                if (loc_lines%1000==0):
+                if (loc_lines%self.status_line_count==0):
                     now_time = datetime.now()
                     self.log(str(loc_lines) + '/' + str(tot_lines) + ': ' + str((now_time-self.start_time).seconds))
             line = f.readline()
