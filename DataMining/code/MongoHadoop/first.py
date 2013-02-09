@@ -16,7 +16,7 @@ input_files = BigData.GetInputFiles('./DataMining/data/')
 
 @lview.parallel()
 def processFile(filep):
-        from DataMining.code.com import log, mongo_parallels
+        from DataMining.code.com import log, parallels, mongo_parallels
         import os
         from ujson import loads
         import gzip
