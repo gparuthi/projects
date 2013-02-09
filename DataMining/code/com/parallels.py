@@ -1,6 +1,20 @@
 import datetime
 from dateutil.parser import parse 
 
+def bdDoSomething2(rec, db, filep):
+	# get tweet id, the curent file path
+	t_id = rec['id']
+	# store the rec to mongodb
+	db.tweets.insert({'tweet_id':t_id, 'filep':filep})
+
+	time = parse(rec['created_at']).replace(minute=0,second=0,tzinfo=None)
+
+	# location of rec                                                                                                                                                                                                                     
+	loc = rec['user']['location'].lower().replace('.','').replace(',','')
+
+	# if the time and loc already existing then increase count else insert new count
+	db.timeline.update({'time':time, 'loc':loc}, {'$inc':{'count':1}}, True)
+
 def bdCheckCondition(rec):
     if 'user' in rec:
         if 'location' in rec['user']:

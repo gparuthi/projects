@@ -16,7 +16,7 @@ input_files = BigData.GetInputFiles('./DataMining/data/')
 
 @lview.parallel()
 def processFile(filep):
-        from DataMining.code.com import log, parallels, mongo_parallels
+        from DataMining.code.com import log, parallels #, mongo_parallels
         import os
         from ujson import loads
         import gzip
@@ -37,9 +37,9 @@ def processFile(filep):
             #print line                                                                                               
             rec = loads(line)
             tot_lines += 1
-            condition = mongo_parallels.bdCheckCondition(rec)
+            condition = parallels.bdCheckCondition(rec)
             if condition:
-                mongo_parallels.doSomething(rec, db, filep)
+                parallels.bdDoSomething2(rec, db, filep)
                 loc_lines += 1
                 if (loc_lines%10000==0):
                     logger.log('Count:' + str(loc_lines) + '/' + str(tot_lines))
