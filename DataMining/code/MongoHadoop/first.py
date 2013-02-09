@@ -50,9 +50,9 @@ def processFile(filep):
             #print line                                                                                               
             rec = loads(line)
             tot_lines += 1
-            condition = bdCheckCondition(rec)
+            condition = parallels.dCheckCondition(rec)
             if condition:
-                doSomething(rec)
+                db.test.insert(rec)
                 loc_lines += 1
                 if (loc_lines%10000==0):
                     logger.log('Count:' + str(loc_lines) + '/' + str(tot_lines))
