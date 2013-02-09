@@ -32,6 +32,32 @@ def merge(locs):
     print 'time taken= ' + str (datetime.now()-start_time)
     return all_locs
 
+def merge_files(filesp):
+    start_time = datetime.now()
+    print 'start time is : '+ str(start_time)
+    # iterate each file and readjson
+    all_locs = {}
+    i =0
+    for fp in filesp:
+        f = open(fp)
+        d = loads(f.read())
+        for time in d:
+            print 'time:' + str(time)
+            if time not in all_locs:
+                all_locs[time] = {}
+            for loc in d[time]:
+                if d[time][loc]>50:
+                    newloc = loc
+                    if newloc in all_locs[time]:
+                        all_locs[time][newloc] += d[time][loc]
+                    else:
+                        all_locs[time][newloc] = d[time][loc]
+        i+=1
+    print 'finished at : '+str(datetime.now())
+    print 'time taken= ' + str (datetime.now()-start_time)
+    return all_locs
+
+
 
 def merge_aloc(locs, oneloc):
     start_time = datetime.now()

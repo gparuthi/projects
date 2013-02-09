@@ -1,0 +1,9 @@
+*.gz
+*.data
+*.pkg
+*.data.ny
+*.data.delhi
+*.json
+*.pyc
+*.*~
+*.*#
