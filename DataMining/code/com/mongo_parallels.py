@@ -1,3 +1,6 @@
+import datetime
+from dateutil.parser import parse 
+
 def bdCheckCondition(rec):
     if 'user' in rec:
         if 'location' in rec['user']:
@@ -22,7 +25,7 @@ def doSomething(rec, db, filep):
 	db.timeline.update({'time':time, 'loc':loc}, {'$inc':{'count':1}}, True)
 
 
-	
+
 
 # keywords = ['barack', 'obama', 'mitt', 'romney', 'president', 'election']
 # sel_cities = ['washington dc','boston ','atlanta ','boston','chicago ','new york','chicago','los angeles','toronto','london','rio','paris','mexico city','lima','singapore','tokyo','buenos aires','jakarta','bandung']
