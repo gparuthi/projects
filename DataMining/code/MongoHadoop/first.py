@@ -50,7 +50,7 @@ def processFile(filep):
             #print line                                                                                               
             rec = loads(line)
             tot_lines += 1
-            condition = parallels.dCheckCondition(rec)
+            condition = parallels.bdCheckCondition(rec)
             if condition:
                 db.test.insert(rec)
                 loc_lines += 1
