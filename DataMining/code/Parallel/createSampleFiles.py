@@ -19,7 +19,6 @@ def processFile(filep):
         import os
         from ujson import loads
         import gzip
-        locs = {}
 
         try:
             f = gzip.open(filep)
@@ -29,19 +28,24 @@ def processFile(filep):
             tot_lines =0
             loc_lines =0
             line = f.readline()
+            outf = open('./DataMining/sample_data/'+os.path.basename(filep)+'_10000.sample', 'wb')
             while line:
                 #print line                                                                                               
                 rec = loads(line)
                 tot_lines += 1
                 condition = parallels.bdCheckCondition(rec)
                 if condition:
-                    parallels.bdDoSomething(rec,locs)
+                    # write rec to outfile
+                    outf.write(dumps(rec)+'\n')
                     loc_lines += 1
                     if (loc_lines%10000==0):
+                        break 
                         logger.log('Count:' + str(loc_lines) + '/' + str(tot_lines))
                 line = f.readline()
+
             ret = {'fname':f.name,'tot_lines': tot_lines, 'loc_lines': loc_lines}
             logger.send_final_stats(ret)
+            outf.close()
         except Exception as e:
             print 'Error log: ' + str(e)
         return locs
