@@ -10,6 +10,7 @@ class logger(object):
     def log(self,log_str):
         print '[' + str(datetime.now()) + '] ' + str(log_str)
         self.LOGFILE.write('[' + str(datetime.now()) + '] ' + str(log_str) + '\n')
+        self.LOGFILE.flush()
 
     def log_file_stats(self,fname, tot_lines, loc_lines):
         now_time = datetime.now()
