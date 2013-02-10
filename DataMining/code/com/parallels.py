@@ -1,6 +1,20 @@
 import datetime
 from dateutil.parser import parse 
 
+def bdDoSomethingFile(rec, rc, filep):
+    # get tweet id, the curent file path
+    t_id = rec['id']
+    # store the rec to redis
+    rc.hset('tweets',t_id,filep)
+
+    time = parse(rec['created_at']).replace(minute=0,second=0,tzinfo=None)
+
+    # location of rec                                                                                                                                                                                                                     
+    loc = rec['user']['location'].lower().replace('.','').replace(',','')
+
+    # if the time and loc already existing then increase count else insert new count
+    rc.hincrby(time,loc,1)
+
 def bdDoSomethingRedis(rec, rc, filep):
     # get tweet id, the curent file path
     t_id = rec['id']
@@ -38,18 +52,18 @@ def bdCheckCondition(rec):
                 return False
         return False
 
-def bdDoSomething(rec,locs):
+def bdDoSomethingMemory(rec,times):
     # get time till hour                                                                                                                                                                                                                 
     time = parse(rec['created_at']).replace(minute=0,second=0,tzinfo=None)
     # location of rec                                                                                                                                                                                                                     
     loc = rec['user']['location'].lower().replace('.','').replace(',','')
-    if time in locs:
+    if time in times:
         try:
-            locs[time][loc] += 1
+            times[time][loc] += 1
         except:
-            locs[time][loc] = 1
+            times[time][loc] = 1
     else:
-        locs[time] = {}
+        times[time] = {}
 
 
 keywords = ['barack', 'obama', 'mitt', 'romney', 'president', 'election']

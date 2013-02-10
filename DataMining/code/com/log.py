@@ -1,10 +1,14 @@
 from datetime import datetime
+import redis
+
+DM_OBSERVER_CH = 'dm_observer'
 
 class logger(object):
     def __init__(self, fname):
         self.start_time = datetime.now()
         self.LOGFILE_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/logs/' + fname + '.' + str(datetime.now()) + '.log'
         self.LOGFILE = open(self.LOGFILE_PATH, 'w')
+        self.rc = redis.Redis(host='gauravparuthi.com', port=6379, db=1)
         print 'logfile initiated at : ' + self.LOGFILE_PATH
 
     def log(self,log_str):
@@ -19,21 +23,28 @@ class logger(object):
         self.log('Total number of lines found = ' + str(tot_lines))
         self.log('Total number of lines With location = ' + str(loc_lines))
 
-    def log_final_stats(self,res):
-        self.log ('----------------------------------------------------------------------')
-        self.log ('Final results:' + str(res))
-        tot_lines = 0
-        loc_lines_del = 0
-        loc_lines_ny = 0
-        for r in res:
-            tot_lines += r['tot_lines']
-            loc_lines_del += r['loc_lines_del']
-            loc_lines_ny += r['loc_lines_ny']
+    def send_final_stats(self, ret):
+        # publish to our redis server that its done
+        self.rc.publish(DM_OBSERVER_CH, ret)
+        self.rc.close()
 
-        self.log ('Total Lines found: ' + str (tot_lines))
-        self.log ('Total delhi lines with coordinates: ' + str(loc_lines_del))
-        self.log ('Total ny lines with coordinates: ' + str(loc_lines_ny))
-        self.log ('----------------------------------------------------------------------')
+
+
+    # def log_final_stats(self,res):
+    #     self.log ('----------------------------------------------------------------------')
+    #     self.log ('Final results:' + str(res))
+    #     tot_lines = 0
+    #     loc_lines_del = 0
+    #     loc_lines_ny = 0
+    #     for r in res:
+    #         tot_lines += r['tot_lines']
+    #         loc_lines_del += r['loc_lines_del']
+    #         loc_lines_ny += r['loc_lines_ny']
+
+    #     self.log ('Total Lines found: ' + str (tot_lines))
+    #     self.log ('Total delhi lines with coordinates: ' + str(loc_lines_del))
+    #     self.log ('Total ny lines with coordinates: ' + str(loc_lines_ny))
+    #     self.log ('----------------------------------------------------------------------')
 #LOGFILE.close()   
 
 
