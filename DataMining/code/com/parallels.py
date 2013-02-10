@@ -1,6 +1,20 @@
 import datetime
 from dateutil.parser import parse 
 
+def bdDoSomethingRedis(rec, rc, filep):
+    # get tweet id, the curent file path
+    t_id = rec['id']
+    # store the rec to redis
+    rc.hset('tweets',t_id,filep)
+
+    time = parse(rec['created_at']).replace(minute=0,second=0,tzinfo=None)
+
+    # location of rec                                                                                                                                                                                                                     
+    loc = rec['user']['location'].lower().replace('.','').replace(',','')
+
+    # if the time and loc already existing then increase count else insert new count
+    rc.hincrby(time,loc,1)
+
 def bdDoSomething2(rec, db, filep):
 	# get tweet id, the curent file path
 	t_id = rec['id']
