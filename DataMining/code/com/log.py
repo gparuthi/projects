@@ -1,19 +1,21 @@
 from datetime import datetime
-import redis
+from DataMining.code.com import settings
+# import redis
 
 DM_OBSERVER_CH = 'dm_observer'
 
 class logger(object):
     def __init__(self, fname):
         self.start_time = datetime.now()
-        self.LOGFILE_PATH = '/Users/gaurav/Documents/Work/Projects/DataMining/logs/' + fname + '.' + str(datetime.now()) + '.log'
+        self.LOGFILE_PATH = settings.LOG_PATH_DIR + fname + '.' + str(datetime.now()) + '.log'
         self.LOGFILE = open(self.LOGFILE_PATH, 'w')
-        self.rc = redis.Redis(host='gauravparuthi.com', port=6379, db=1)
+        # self.rc = redis.Redis(host='gauravparuthi.com', port=6379, db=1)
         print 'logfile initiated at : ' + self.LOGFILE_PATH
 
     def log(self,log_str):
         print '[' + str(datetime.now()) + '] ' + str(log_str)
         self.LOGFILE.write('[' + str(datetime.now()) + '] ' + str(log_str) + '\n')
+        self.rc.publish(DM_OBSERVER_CH, log_str)
         self.LOGFILE.flush()
 
     def log_file_stats(self,fname, tot_lines, loc_lines):
@@ -26,7 +28,7 @@ class logger(object):
     def send_final_stats(self, ret):
         # publish to our redis server that its done
         self.rc.publish(DM_OBSERVER_CH, ret)
-        self.rc.close()
+        
 
 
 

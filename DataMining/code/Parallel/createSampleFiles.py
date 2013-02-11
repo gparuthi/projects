@@ -17,17 +17,20 @@ input_files = BigData.GetInputFiles('./DataMining/data/')
 def processFile(filep):
         from DataMining.code.com import log, parallels
         import os
-        from ujson import loads
+        from ujson import loads,dumps
         import gzip
 
+
+        logger = log.logger('Parallel/'+'sampleCreate_'+os.path.basename(filep))
+        
+        ret = {}
+            
         try:
             f = gzip.open(filep)
-            logger = log.logger('Parallel/'+os.path.basename(filep))
-            logger.log( 'finding all records with location for: ' + f.name)
-            
             tot_lines =0
             loc_lines =0
             line = f.readline()
+            logger.log( 'finding all records with location for: ' + f.name)
             outf = open('./DataMining/sample_data/'+os.path.basename(filep)+'_10000.sample', 'wb')
             while line:
                 #print line                                                                                               
@@ -47,8 +50,8 @@ def processFile(filep):
             logger.send_final_stats(ret)
             outf.close()
         except Exception as e:
-            print 'Error log: ' + str(e)
-        return locs
+            logger.log('Error log: ' + str(e))
+        return ret
 
 print 'starting now..'
 starttime = datetime.now()
