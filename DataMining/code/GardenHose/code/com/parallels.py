@@ -1,8 +1,8 @@
 import datetime
 from dateutil.parser import parse 
-from pymongo import Connection
+# from pymongo import Connection
 from redis import Redis
-from DataMining.code.com import log
+# from DataMining.code.com import log
 
 def sendToMongo(file):
     start_time = datetime.datetime.now()
@@ -20,7 +20,7 @@ def sendToMongo(file):
     # db.timeline.update({'time':time, 'loc':loc}, {'$inc':{'count':times[time][loc]}}, True)
 
 def sendToRedis(times):
-    # logger = log.logger('Parallel/SendToRedis'+os.path.basename(filep))
+    logger = log.logger('Parallel/SendToRedis'+os.path.basename(filep))
     start_time = datetime.datetime.now() 
     print 'starting redis transfer now: ' + str(start_time)
 

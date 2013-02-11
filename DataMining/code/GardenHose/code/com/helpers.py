@@ -1,8 +1,15 @@
 import os
-from ujson import dumps
+from ujson import dumps, loads
 from datetime import datetime
 
 dir = './DataMining/uncompressed/all_locations/all_data_again/'
+
+def GetInputFiles(dir, file_type=''):
+    paths = []
+    for f in os.listdir(dir):
+        if file_type in f:
+            paths.append(os.path.join(dir,f))        
+    return paths
 
 def write_all_locs_to_file(locs, dir = dir):
     start_time = datetime.now()
@@ -11,7 +18,7 @@ def write_all_locs_to_file(locs, dir = dir):
     print 'writing all data to file'
     for d in locs:
         print str(datetime.now()) + ': working on file: ' + str(i)
-        f= open(os.path.join(dir,str(i)+'.data'),'wb')
+        f= open(os.path.join(dir,str(i)+'_'+str(start_time)+'.data'),'wb')
         f.write(dumps(d))
         i+=1
     print 'finished at : '+str(datetime.now())  
@@ -47,7 +54,7 @@ def merge_files(filesp):
     all_locs = {}
     i =0
     for fp in filesp:
-        f = open(fp)
+        f = open(fp,'rb')
         d = loads(f.read())
         for time in d:
             print 'time:' + str(time)

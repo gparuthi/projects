@@ -1,3 +1,3 @@
-LOG_PATH_DIR = '/Users/gaurav/Documents/Work/Projects/DataMining/logs/'
-INPUT_DIR = '/Users/gaurav/Documents/Work/Projects/DataMining/data/'
-OUTPUT_DIR = '/Users/gaurav/Documents/Work/Projects/DataMining/logs/'
+LOG_PATH_DIR = '/Users/gparuthi/Dropbox/dm_code/GardenHose/logs/'
+INPUT_DIR = '/Users/gparuthi/Dropbox/dm_code/GardenHose/data/'
+OUTPUT_DIR = '/Users/gparuthi/Dropbox/dm_code/GardenHose/output/'
