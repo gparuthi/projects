@@ -4,12 +4,11 @@ import log, parallels, settings, helpers
 import os
 
 rc= parallel.Client()
-
 lview = rc.load_balanced_view() 
-
 lview.block = True
+dview = rc[:]
 
-@lview.parallel()
+# @lview.parallel()
 def processFile(filep):
         import log, parallels, helpers, settings
         import os
@@ -50,8 +49,10 @@ def processFile(filep):
         logger.log('Done!')    
         return locs
 
-input_files = helpers.GetInputFiles(settings.INPUT_DIR, settings.FILE_TYPE)
-print 'starting now..'
 starttime = datetime.now()
-res = processFile.map(input_files)
-print 'time taken= '+ str(datetime.now()-starttime)
+input_files = helpers.GetInputFiles(settings.INPUT_DIR, settings.FILE_TYPE)
+print datetime.now()
+parallel_result = dview.map_async(processFile, input_files)
+parallel_result.wait_interactive()
+# res = processFile.map(input_files)
+print '[%s] time taken= %s' % (str(datetime.now()), str(datetime.now()-starttime))

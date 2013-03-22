@@ -1,0 +1,4 @@
+[2013-03-21 22:43:45.181086] finding all records with location for: ../../../data/olympics/gardenhose.2012-08-06.gz
+[2013-03-21 22:43:45.275809] final print: {'tot_lines': 0, 'loc_lines': 0, 'fname': '../../../data/olympics/gardenhose.2012-08-06.gz'}
+[2013-03-21 22:43:45.275882] Sending to files now..
+[2013-03-21 22:43:45.276301] Done!
