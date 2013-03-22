@@ -19,26 +19,28 @@ def processFile(filep):
         locs = {}
         logger = log.logger('test/AllLocsBigData_'+os.path.basename(filep))
         
-        try:
-            # f = open(filep)
-            f = gzip.open(filep)
-            logger.log( 'finding all records with location for: ' + f.name)
-            tot_lines =0
-            loc_lines =0
+        
+        # f = open(filep)
+        f = gzip.open(filep)
+        logger.log( 'finding all records with location for: ' + f.name)
+        tot_lines =0
+        loc_lines =0
+        line = f.readline()
+        while line:
+            #print line                                                                                               
+            rec = loads(line)
+            tot_lines += 1
+            condition = parallels.bdCheckCondition(rec)
+            if condition:
+                parallels.bdDoSomethingMemory(rec,locs)
+                loc_lines += 1
+                if (loc_lines%10000==0):
+                    logger.log('Count:' + str(loc_lines) + '/' + str(tot_lines))
             line = f.readline()
-            while line:
-                #print line                                                                                               
-                rec = loads(line)
-                tot_lines += 1
-                condition = parallels.bdCheckCondition(rec)
-                if condition:
-                    parallels.bdDoSomethingMemory(rec,locs)
-                    loc_lines += 1
-                    if (loc_lines%10000==0):
-                        logger.log('Count:' + str(loc_lines) + '/' + str(tot_lines))
-                line = f.readline()
-            ret = {'fname':f.name,'tot_lines': tot_lines, 'loc_lines': loc_lines}
-            logger.send_final_stats(ret)
+        ret = {'fname':f.name,'tot_lines': tot_lines, 'loc_lines': loc_lines}
+        logger.send_final_stats(ret)
+        try:
+            print 'just trying'
         except Exception as e:
             logger.log('Error log: ' + str(e))
         # write results to file

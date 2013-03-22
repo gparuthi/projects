@@ -8,3 +8,8 @@
 *.*~
 *.*#
 *.sample
+
+# these are added for the earthquake data 
+*.url*
+*.txt
+*.ny

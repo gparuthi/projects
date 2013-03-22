@@ -14,11 +14,23 @@ def GetInputFiles(dir, file_type=''):
 def write_all_locs_to_file(locs, dir = dir):
     start_time = datetime.now()
     print 'start time is : '+ str(start_time)
+    print 'writing all data to file'
+    
+    print str(datetime.now()) + ': working on file: '
+    f= open(os.path.join(dir,'AllLocs_'+str(start_time)+'.data'),'wb')
+    f.write(dumps(locs))
+
+    print 'finished at : '+str(datetime.now())  
+    print 'time taken= ' + str (datetime.now()-start_time) 
+
+def write_day_wise_to_file(locs, dir = dir):
+    start_time = datetime.now()
+    print 'start time is : '+ str(start_time)
     i = 1
     print 'writing all data to file'
     for d in locs:
         print str(datetime.now()) + ': working on file: ' + str(i)
-        f= open(os.path.join(dir,str(i)+'_'+str(start_time)+'.data'),'wb')
+        f= open(os.path.join(dir,str(i)+'_DayWise_'+str(start_time)+'.data'),'wb')
         f.write(dumps(d))
         i+=1
     print 'finished at : '+str(datetime.now())  
