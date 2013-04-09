@@ -61,6 +61,10 @@ def processFile(filep):
 starttime = datetime.now()
 input_files = helpers.GetInputFiles(settings.INPUT_DIR, settings.FILE_TYPE)
 print datetime.now()
+# autoreload modules in the ipy cluster
+%px %load_ext autoreload
+%px %autoreload 2
+
 parallel_result = dview.map_async(processFile, input_files)
 parallel_result.wait_interactive()
 # res = processFile.map(input_files)
