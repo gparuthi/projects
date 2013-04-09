@@ -23,12 +23,15 @@ def write_all_locs_to_file(locs, dir = dir):
     print 'finished at : '+str(datetime.now())  
     print 'time taken= ' + str (datetime.now()-start_time) 
 
-def write_day_wise_to_file(locs, dir = dir):
+""" Writes the per day data to file
+    times: a dictionary of keys: hours | values: dictionary of locations (key: location | value: tweet_count)   
+""" 
+def write_day_wise_to_file(times, dir = dir):
     start_time = datetime.now()
     print 'start time is : '+ str(start_time)
     i = 1
     print 'writing all data to file'
-    for d in locs:
+    for d in times:
         print str(datetime.now()) + ': working on file: ' + str(i)
         f= open(os.path.join(dir,str(i)+'_DayWise_'+str(start_time)+'.data'),'wb')
         f.write(dumps(d))
