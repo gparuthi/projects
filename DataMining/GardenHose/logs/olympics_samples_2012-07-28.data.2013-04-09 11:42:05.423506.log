@@ -1,0 +1,4 @@
+[2013-04-09 11:42:05.423762] finding all records with location for: ../../data/olympics_opening/2012-07-28.data
+[2013-04-09 11:42:05.510463] final print: {'tot_lines': 1000, 'loc_lines': 25, 'fname': '../../data/olympics_opening/2012-07-28.data'}
+[2013-04-09 11:42:05.510523] Sending to files now..
+[2013-04-09 11:42:05.510915] Done!

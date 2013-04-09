@@ -19,7 +19,7 @@ def processFile(filep):
         import gzip
 
         times = {}
-        logger = log.logger('test/AllLocsBigData_'+os.path.basename(filep))
+        logger = log.logger('olympics_samples_'+os.path.basename(filep))
         
         try:
             if '.gz' in filep:
@@ -40,9 +40,9 @@ def processFile(filep):
                 if condition:
                     settings.DoSomething(rec,times)
                     loc_lines += 1
-                    if (loc_lines%10000==0):
+                    if (loc_lines%1000==0):
                         logger.log('Count:' + str(loc_lines) + '/' + str(tot_lines))
-            
+                        logger.log('Last sample : %s' %(rec['text']))
                 line = f.readline()
             
             ret = {'fname':f.name,'tot_lines': tot_lines, 'loc_lines': loc_lines}
