@@ -1,0 +1,5 @@
+[2013-03-21 23:26:21.350884] finding all records with location for: ../../data/olympics/gardenhose.2012-08-04.gz
+[2013-03-21 23:26:21.404678] Error log: Expected object or value
+[2013-03-21 23:26:21.404772] Sending to files now..
+[2013-03-21 23:26:21.404847] Error log: 'module' object has no attribute 'write_day_wise_to_file'
+[2013-03-21 23:26:21.404907] Done!

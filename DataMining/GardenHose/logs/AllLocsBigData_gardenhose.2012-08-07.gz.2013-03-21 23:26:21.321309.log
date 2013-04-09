@@ -1,0 +1,5 @@
+[2013-03-21 23:26:21.321455] finding all records with location for: ../../data/olympics/gardenhose.2012-08-07.gz
+[2013-03-21 23:26:21.350544] final print: {'tot_lines': 0, 'loc_lines': 0, 'fname': '../../data/olympics/gardenhose.2012-08-07.gz'}
+[2013-03-21 23:26:21.350588] Sending to files now..
+[2013-03-21 23:26:21.350632] Error log: 'module' object has no attribute 'write_day_wise_to_file'
+[2013-03-21 23:26:21.350664] Done!
