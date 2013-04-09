@@ -5,7 +5,7 @@ FILE_TYPE = '.gz'
 keywords = ['olympics', 'opening']
 
 CheckCondition = bdCheckCondition_select_keywords
-DoSomething = 
+DoSomething = bdDoSomethingMemory
 
 # Condtion methods available
 def bdCheckCondition_select_keywords(rec, keywords):
